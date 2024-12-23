@@ -93,43 +93,106 @@ const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-let point = { x: canvas.width / 2, y: canvas.height / 2, vx: 0, vy: 0 };
-const center = { x: canvas.width / 2, y: canvas.height / 2 };
-const attractionStrength = 0.05;
-const repulsionStrength = 10000;
+const img = new Image();
+img.src = "assets/images/icon192.png"; // Path to your uploaded image
+
+const points = [];
+const attractionStrength = 0.1;
+const repulsionStrength = 5000;
+
+// Load image and extract points
+img.onload = function () {
+  // Draw image on a temporary canvas
+  const tempCanvas = document.createElement("canvas");
+  const tempCtx = tempCanvas.getContext("2d");
+  tempCanvas.width = img.width;
+  tempCanvas.height = img.height;
+  tempCtx.drawImage(img, 0, 0);
+
+  // Extract pixel data
+  const imageData = tempCtx.getImageData(0, 0, img.width, img.height);
+  const data = imageData.data;
+
+  // Scale image to fit the main canvas
+  const scaleX = canvas.width / img.width;
+  const scaleY = canvas.height / img.height;
+  const scale = Math.min(scaleX, scaleY);
+  const offsetX = (canvas.width - img.width * scale) / 2;
+  const offsetY = (canvas.height - img.height * scale) / 2;
+
+  for (let y = 0; y < img.height; y++) {
+    for (let x = 0; x < img.width; x++) {
+      const index = (y * img.width + x) * 4;
+      const alpha = data[index + 3];
+
+      // Include points with significant opacity
+      if (alpha > 128) {
+        points.push({
+          x: Math.random() * canvas.width, // Start at a random position
+          y: Math.random() * canvas.height,
+          homeX: x * scale + offsetX,
+          homeY: y * scale + offsetY,
+          vx: 0,
+          vy: 0,
+        });
+      }
+    }
+  }
+
+  loop(); // Start the animation
+};
+
+// Track mouse position
+let mouse = { x: null, y: null };
 
 canvas.addEventListener("mousemove", (event) => {
-  const dx = point.x - event.clientX;
-  const dy = point.y - event.clientY;
-  const distanceSquared = dx * dx + dy * dy;
+  mouse.x = event.clientX;
+  mouse.y = event.clientY;
+});
 
-  if (distanceSquared < 50000) { // Adjust the threshold as needed
-    const force = repulsionStrength / distanceSquared;
-    point.vx += (dx / Math.sqrt(distanceSquared)) * force;
-    point.vy += (dy / Math.sqrt(distanceSquared)) * force;
-  }
+canvas.addEventListener("mouseleave", () => {
+  mouse.x = null;
+  mouse.y = null;
 });
 
 function update() {
-  // Attraction to center
-  const dx = center.x - point.x;
-  const dy = center.y - point.y;
-  point.vx += dx * attractionStrength;
-  point.vy += dy * attractionStrength;
+  points.forEach((point) => {
+    // Attraction to home position
+    const dxToHome = point.homeX - point.x;
+    const dyToHome = point.homeY - point.y;
+    point.vx += dxToHome * attractionStrength;
+    point.vy += dyToHome * attractionStrength;
 
-  // Apply velocity and damping
-  point.x += point.vx;
-  point.y += point.vy;
-  point.vx *= 0.95;
-  point.vy *= 0.95;
+    // Repulsion from mouse
+    if (mouse.x !== null && mouse.y !== null) {
+      const dxToMouse = point.x - mouse.x;
+      const dyToMouse = point.y - mouse.y;
+      const distanceSquared = dxToMouse * dxToMouse + dyToMouse * dyToMouse;
+
+      if (distanceSquared < 50000) { // Adjust threshold as needed
+        const force = repulsionStrength / distanceSquared;
+        point.vx += (dxToMouse / Math.sqrt(distanceSquared)) * force;
+        point.vy += (dyToMouse / Math.sqrt(distanceSquared)) * force;
+      }
+    }
+
+    // Apply velocity and damping
+    point.x += point.vx;
+    point.y += point.vy;
+    point.vx *= 0.95; // Damping to reduce oscillation
+    point.vy *= 0.95;
+  });
 }
 
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = "#ff4757";
-  ctx.beginPath();
-  ctx.arc(point.x, point.y, 10, 0, Math.PI * 2);
-  ctx.fill();
+
+  points.forEach((point) => {
+    ctx.beginPath();
+    ctx.arc(point.x, point.y, 2, 0, Math.PI * 2); // Draw each point
+    ctx.fill();
+  });
 }
 
 function loop() {
@@ -138,7 +201,6 @@ function loop() {
   requestAnimationFrame(loop);
 }
 
-loop();
 </script>
   
 
