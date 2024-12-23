@@ -61,6 +61,7 @@
 	</nav>
 </section>
 
+
 <section data-bs-version="5.1" class="article11 cid-uxIobLpHD7" id="article11-1">
     
 
@@ -77,7 +78,9 @@
             </div>
         </div>
     </div>
-</section>
+  </section>
+
+
 
 <section data-bs-version="5.1" class="start article4 cid-uxIpu1s9LV" id="article04-3">
 	
@@ -102,6 +105,8 @@
 		</div>
 	</div>
 </section>
+
+
 
 <section data-bs-version="5.1" class="features03 cid-uxIppiZMZR" id="features03-2">
 	
@@ -250,8 +255,128 @@
 </section>
 
 
+<canvas id="visual"></canvas>
+<script>
+const canvas = document.getElementById("visual");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+// Replace with the URL of your image
+const img = new Image();
+img.crossOrigin = "Anonymous"; // Ensure cross-origin compatibility if the image is from another domain
+img.src = "https://i.imgur.com/NXp1uht.png"; // Update with your image URL
+
+const points = [];
+const attractionStrength = 0.03;
+const repulsionStrength = 5000;
+
+// Load image and extract points for letters only
+img.onload = function () {
+  const tempCanvas = document.createElement("canvas");
+  const tempCtx = tempCanvas.getContext("2d");
+  tempCanvas.width = img.width;
+  tempCanvas.height = img.height;
+  tempCtx.drawImage(img, 0, 0);
+
+  const imageData = tempCtx.getImageData(0, 0, img.width, img.height);
+  const data = imageData.data;
+
+  const scaleX = canvas.width / img.width;
+  const scaleY = canvas.height / img.height;
+  const scale = Math.min(scaleX, scaleY);
+  const offsetX = (canvas.width - img.width * scale) / 2;
+  const offsetY = (canvas.height - img.height * scale) / 2;
+
+  for (let y = 0; y < img.height; y++) {
+    for (let x = 0; x < img.width; x++) {
+      const index = (y * img.width + x) * 4;
+      const red = data[index];
+      const green = data[index + 1];
+      const blue = data[index + 2];
+      const alpha = data[index + 3];
+
+      if (alpha > 128 && red < 200 && green < 200 && blue < 200) {
+        points.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          homeX: x * scale + offsetX,
+          homeY: y * scale + offsetY,
+          vx: 0,
+          vy: 0,
+        });
+      }
+    }
+  }
+
+  loop();
+};
+
+let mouse = { x: null, y: null };
+
+canvas.addEventListener("mousemove", (event) => {
+  const rect = canvas.getBoundingClientRect();
+  mouse.x = event.clientX - rect.left;
+  mouse.y = event.clientY - rect.top;
+});
+
+canvas.addEventListener("mouseleave", () => {
+  mouse.x = null;
+  mouse.y = null;
+});
+
+function update() {
+  points.forEach((point) => {
+    const dxToHome = point.homeX - point.x;
+    const dyToHome = point.homeY - point.y;
+    point.vx += dxToHome * attractionStrength;
+    point.vy += dyToHome * attractionStrength;
+
+    if (mouse.x !== null && mouse.y !== null) {
+      const dxToMouse = point.x - mouse.x;
+      const dyToMouse = point.y - mouse.y;
+      const distanceSquared = dxToMouse * dxToMouse + dyToMouse * dyToMouse;
+
+      if (distanceSquared < 50000) {
+        const force = repulsionStrength / distanceSquared;
+        point.vx += (dxToMouse / Math.sqrt(distanceSquared)) * force;
+        point.vy += (dyToMouse / Math.sqrt(distanceSquared)) * force;
+      }
+    }
+
+    point.x += point.vx;
+    point.y += point.vy;
+    point.vx *= 0.75;
+    point.vy *= 0.75;
+  });
+}
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "#000000";
+
+  points.forEach((point) => {
+    ctx.beginPath();
+    ctx.arc(point.x, point.y, 2, 0, Math.PI * 2);
+    ctx.fill();
+  });
+}
+
+function loop() {
+  update();
+  draw();
+  requestAnimationFrame(loop);
+}
+
+</script>
+
+
+
 <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>  <script src="assets/smoothscroll/smooth-scroll.js"></script>  <script src="assets/ytplayer/index.js"></script>  <script src="assets/dropdown/js/navbar-dropdown.js"></script>  <script src="assets/theme/js/script.js"></script>  
   
+
+
   
 </body>
 </html>

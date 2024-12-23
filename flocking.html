@@ -104,18 +104,15 @@ const repulsionStrength = 5000;
 
 // Load image and extract points for letters only
 img.onload = function () {
-  // Draw image on a temporary canvas
   const tempCanvas = document.createElement("canvas");
   const tempCtx = tempCanvas.getContext("2d");
   tempCanvas.width = img.width;
   tempCanvas.height = img.height;
   tempCtx.drawImage(img, 0, 0);
 
-  // Extract pixel data
   const imageData = tempCtx.getImageData(0, 0, img.width, img.height);
   const data = imageData.data;
 
-  // Scale image to fit the main canvas
   const scaleX = canvas.width / img.width;
   const scaleY = canvas.height / img.height;
   const scale = Math.min(scaleX, scaleY);
@@ -125,15 +122,14 @@ img.onload = function () {
   for (let y = 0; y < img.height; y++) {
     for (let x = 0; x < img.width; x++) {
       const index = (y * img.width + x) * 4;
-      const red = data[index];     // Red channel
-      const green = data[index + 1]; // Green channel
-      const blue = data[index + 2];  // Blue channel
-      const alpha = data[index + 3]; // Alpha channel
+      const red = data[index];
+      const green = data[index + 1];
+      const blue = data[index + 2];
+      const alpha = data[index + 3];
 
-      // Include only points from the letters (e.g., dark pixels)
       if (alpha > 128 && red < 200 && green < 200 && blue < 200) {
         points.push({
-          x: Math.random() * canvas.width, // Start at a random position
+          x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
           homeX: x * scale + offsetX,
           homeY: y * scale + offsetY,
@@ -144,15 +140,15 @@ img.onload = function () {
     }
   }
 
-  loop(); // Start the animation
+  loop();
 };
 
-// Track mouse position
 let mouse = { x: null, y: null };
 
 canvas.addEventListener("mousemove", (event) => {
-  mouse.x = event.clientX;
-  mouse.y = event.clientY;
+  const rect = canvas.getBoundingClientRect();
+  mouse.x = event.clientX - rect.left;
+  mouse.y = event.clientY - rect.top;
 });
 
 canvas.addEventListener("mouseleave", () => {
@@ -162,29 +158,26 @@ canvas.addEventListener("mouseleave", () => {
 
 function update() {
   points.forEach((point) => {
-    // Attraction to home position
     const dxToHome = point.homeX - point.x;
     const dyToHome = point.homeY - point.y;
     point.vx += dxToHome * attractionStrength;
     point.vy += dyToHome * attractionStrength;
 
-    // Repulsion from mouse
     if (mouse.x !== null && mouse.y !== null) {
       const dxToMouse = point.x - mouse.x;
       const dyToMouse = point.y - mouse.y;
       const distanceSquared = dxToMouse * dxToMouse + dyToMouse * dyToMouse;
 
-      if (distanceSquared < 50000) { // Adjust threshold as needed
+      if (distanceSquared < 50000) {
         const force = repulsionStrength / distanceSquared;
         point.vx += (dxToMouse / Math.sqrt(distanceSquared)) * force;
         point.vy += (dyToMouse / Math.sqrt(distanceSquared)) * force;
       }
     }
 
-    // Apply velocity and damping
     point.x += point.vx;
     point.y += point.vy;
-    point.vx *= 0.75; // Damping to reduce oscillation
+    point.vx *= 0.75;
     point.vy *= 0.75;
   });
 }
@@ -195,7 +188,7 @@ function draw() {
 
   points.forEach((point) => {
     ctx.beginPath();
-    ctx.arc(point.x, point.y, 2, 0, Math.PI * 2); // Draw each point
+    ctx.arc(point.x, point.y, 2, 0, Math.PI * 2);
     ctx.fill();
   });
 }
