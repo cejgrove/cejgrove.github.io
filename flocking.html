@@ -7,20 +7,19 @@
   <meta name="generator" content="Mobirise v5.9.18, mobirise.com">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
   <link rel="shortcut icon" href="assets/images/favicon-1.ico" type="image/x-icon">
-  <meta name="description" content="">
+  <meta name="description" content="Evolutionary algorithm for flocking behaviour">
   
   
-  <title>Contact</title>
+  <title>Flocking</title>
   <link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
   <link rel="stylesheet" href="assets/dropdown/css/style.css">
-  <link rel="stylesheet" href="assets/socicon/css/styles.css">
   <link rel="stylesheet" href="assets/theme/css/style.css">
   <link rel="preload" href="https://fonts.googleapis.com/css?family=Inter+Tight:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter+Tight:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap"></noscript>
-  <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css?v=TyLeaL"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css?v=TyLeaL" type="text/css">
+  <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css?v=YGMDGY"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css?v=YGMDGY" type="text/css">
 
   
   
@@ -28,7 +27,7 @@
 </head>
 <body>
   
-  <section data-bs-version="5.1" class="menu menu1 cid-uxIo30R6fm" once="menu" id="menu01-5">
+  <section data-bs-version="5.1" class="menu menu1 cid-uxIo30R6fm" once="menu" id="menu01-g">
 	
 
 	<nav class="navbar navbar-dropdown navbar-expand-lg">
@@ -62,61 +61,88 @@
 	</nav>
 </section>
 
-<section data-bs-version="5.1" class="social02 cid-uxJ8yje9sn" id="social02-6">
+<section data-bs-version="5.1" class="start article4 cid-uxM12EnvYo" id="article04-h">
 	
 
 	
 	
+
 	<div class="container">
 		<div class="row justify-content-center">
-			<div class="col-12 content-head">
-				<div class="mb-5">
-					<h5 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
-						<strong>Contact</strong></h5>
+			<div class="col-12 col-md-12 col-lg-6 image-wrapper">
+				<img class="w-100" src="assets/images/flocking.png" alt="Mobirise Website Builder">
+			</div>
+			<div class="col-12 col-md-12 col-lg">
+				<div class="text-wrapper align-left">
+					<h1 class="mbr-section-title mbr-fonts-style mb-4 display-2"><strong>An evolutionary approach to simulate flocking behaviour</strong></h1>
+					<p class="mbr-text mbr-fonts-style mb-4 display-7"></p>
 					
 				</div>
 			</div>
 		</div>
-		<div class="row">
-			
-			
-			<div class="item features-without-image col-12 col-md-6 col-lg-4 active">
-				<div class="item-wrapper">
-					<span class="mbr-iconfont m-auto socicon-twitter socicon"></span>
-					<div class="card-box">
-						<h4 class="card-title mbr-fonts-style mb-1 display-7">
-							<strong>Twitter</strong>
-						</h4>
-						<h5 class="card-text mbr-fonts-style display-7"><a href="https://x.com/Pitching_Bot" class="text-primary" target="_blank"><u style="">@Pitching_Bot</u></a></h5>
-					</div>
-				</div>
-			</div><div class="item features-without-image col-12 col-md-6 col-lg-4">
-				<div class="item-wrapper">
-					<span class="mbr-iconfont m-auto mobi-mbri-letter mobi-mbri"></span>
-					<div class="card-box">
-						<h4 class="card-title mbr-fonts-style mb-1 display-7">
-							<strong>Email</strong></h4>
-						<h5 class="card-text mbr-fonts-style display-7">
-							<a href="mailto:camerongrove96@gmail.com" class="text-primary"><u style="">camerongrove96[@]gmail[.]com</u></a>
-						</h5>
-					</div>
-				</div>
-			</div><div class="item features-without-image col-12 col-md-6 col-lg-4">
-				<div class="item-wrapper">
-					<span class="mbr-iconfont m-auto socicon-linkedin socicon"></span>
-					<div class="card-box">
-						<h4 class="card-title mbr-fonts-style mb-1 display-7">
-							<strong>LinkedIn</strong></h4>
-						<h5 class="card-text mbr-fonts-style display-7"><a href="https://www.linkedin.com/in/cameron-e-j-grove/" class="text-primary" target="_blank"><u style="">cameron-e-j-grove</u></a></h5>
-					</div>
-				</div>
-			</div>
-			
-			
-			
-		</div>
 	</div>
-</section><script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>  <script src="assets/smoothscroll/smooth-scroll.js"></script>  <script src="assets/ytplayer/index.js"></script>  <script src="assets/dropdown/js/navbar-dropdown.js"></script>  <script src="assets/theme/js/script.js"></script>  
+</section>
+
+
+
+<canvas id="visual"></canvas>
+<script>
+const canvas = document.getElementById("visual");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let point = { x: canvas.width / 2, y: canvas.height / 2, vx: 0, vy: 0 };
+const center = { x: canvas.width / 2, y: canvas.height / 2 };
+const attractionStrength = 0.05;
+const repulsionStrength = 10000;
+
+canvas.addEventListener("mousemove", (event) => {
+  const dx = point.x - event.clientX;
+  const dy = point.y - event.clientY;
+  const distanceSquared = dx * dx + dy * dy;
+
+  if (distanceSquared < 50000) { // Adjust the threshold as needed
+    const force = repulsionStrength / distanceSquared;
+    point.vx += (dx / Math.sqrt(distanceSquared)) * force;
+    point.vy += (dy / Math.sqrt(distanceSquared)) * force;
+  }
+});
+
+function update() {
+  // Attraction to center
+  const dx = center.x - point.x;
+  const dy = center.y - point.y;
+  point.vx += dx * attractionStrength;
+  point.vy += dy * attractionStrength;
+
+  // Apply velocity and damping
+  point.x += point.vx;
+  point.y += point.vy;
+  point.vx *= 0.95;
+  point.vy *= 0.95;
+}
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "#ff4757";
+  ctx.beginPath();
+  ctx.arc(point.x, point.y, 10, 0, Math.PI * 2);
+  ctx.fill();
+}
+
+function loop() {
+  update();
+  draw();
+  requestAnimationFrame(loop);
+}
+
+loop();
+</script>
+  
+
+<script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>  <script src="assets/smoothscroll/smooth-scroll.js"></script>  <script src="assets/ytplayer/index.js"></script>  <script src="assets/dropdown/js/navbar-dropdown.js"></script>  <script src="assets/theme/js/script.js"></script>  
   
   
 </body>
