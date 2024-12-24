@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two-Player Lexicant</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            user-select: none; /* Prevent text selection */
+        }
+        .letter {
+            position: absolute;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .draggable {
+            cursor: grab;
+            color: red;
+        }
+        .dragging {
+            cursor: grabbing;
+        }
+        .arrow {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid black;
+            display: none;
+        }
+        .button {
+            position: absolute;
+            top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .check-button {
+            left: 120px;
+            display: none;
+        }
+        .challenge-button {
+            left: 230px;
+        }
+        .output {
+            position: absolute;
+            top: 50px;
+            left: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .player-info {
+            position: absolute;
+            top: 90px;
+            left: 10px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+<button class="button restart-button" onclick="confirmRestartGame()">Restart Game</button>
+<button class="button check-button" id="checkButton" onclick="checkWord()">Check Word</button>
+<button class="button challenge-button" onclick="challengePlayer()">Challenge</button>
+<div class="output" id="output"></div>
+<div class="player-info" id="playerInfo"></div>
+
+<script>
+    const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const repulsionStrength = 100; // Tuneable parameter for repulsion strength
+    const dampingFactor = 0.9; // Damping for oscillations
+    const startX = 100;
+    const startY = 200;
+    const draggableStartY = startY + 100; // Adjusted to keep draggable letters in visible bounds
+    const thresholdY = startY + 50; // Ensure threshold is near the ALPHABET string
+
+    let dictionary = [];
+    let playerNames = { 1: "Player 1", 2: "Player 2" };
+    let stringLetters = randomLetter();
+    let currentPlayer = 1;
+    let playerScores = { 1: 0, 2: 0 };
+
+    // Fetch the dictionary file
+    async function loadDictionary() {
+        try {
+            const response = await fetch('https://raw.githubusercontent.com/redbo/scrabble/master/dictionary.txt');
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const text = await response.text();
+            dictionary = text.split('\n').map(word => word.trim().toUpperCase());
+            console.log('Dictionary loaded:', dictionary.length, 'words');
+        } catch (error) {
+            console.error('Error loading dictionary:', error);
+        }
+    }
+
+    loadDictionary();
+
+    const container = document.body;
+    const letters = [];
+    const positions = [];
+
+    const arrow = document.createElement('div');
+    arrow.className = 'arrow';
+    container.appendChild(arrow);
+
+    function randomLetter() {
+        return alphabet[Math.floor(Math.random() * alphabet.length)];
+    }
+
+    function updatePlayerInfo() {
+        const playerInfo = document.getElementById("playerInfo");
+        playerInfo.textContent = `${playerNames[currentPlayer]}'s turn | Scores: ${playerNames[1]}: ${playerScores[1]}, ${playerNames[2]}: ${playerScores[2]}`;
+    }
+
+    function renderString() {
+        letters.forEach(letter => letter.remove());
+        letters.length = 0;
+        positions.length = 0;
+
+        stringLetters.split('').forEach((char, index) => {
+            const letter = document.createElement('div');
+            letter.className = 'letter';
+            letter.textContent = char;
+            letter.style.left = `${startX + index * spacing}px`;
+            letter.style.top = `${startY}px`;
+            container.appendChild(letter);
+
+            letters.push(letter);
+            positions.push({
+                x: startX + index * spacing,
+                y: startY,
+                vx: 0,
+                vy: 0
+            });
+        });
+
+        // Enable the check word button if the string length is >= 4
+        document.getElementById("checkButton").style.display = stringLetters.length >= 4 ? "inline-block" : "none";
+    }
+
+    const spacing = 50;
+    renderString();
+    updatePlayerInfo();
+
+    function createDraggableAlphabet() {
+        const rows = 4; // Split the alphabet into rows
+        const lettersPerRow = Math.ceil(alphabet.length / rows);
+        const rowSpacing = 70;
+
+        for (let i = 0; i < alphabet.length; i++) {
+            const draggableLetter = document.createElement('div');
+            draggableLetter.className = 'letter draggable';
+            draggableLetter.textContent = alphabet[i];
+
+            const row = Math.floor(i / lettersPerRow);
+            const col = i % lettersPerRow;
+
+            draggableLetter.style.left = `${startX + col * spacing}px`;
+            draggableLetter.style.top = `${draggableStartY + rowSpacing * row}px`;
+
+            container.appendChild(draggableLetter);
+
+            let isDragging = false;
+            let mouseX = 0;
+            let mouseY = 0;
+            let dropPosition = null;
+
+            draggableLetter.addEventListener('mousedown', (e) => {
+                e.preventDefault(); // Prevent text selection on mousedown
+                isDragging = true;
+                draggableLetter.classList.add('dragging');
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging) {
+                    const dx = e.clientX - mouseX;
+                    const dy = e.clientY - mouseY;
+
+                    mouseX = e.clientX;
+                    mouseY = e.clientY;
+
+                    const currentX = parseFloat(draggableLetter.style.left || 0);
+                    const currentY = parseFloat(draggableLetter.style.top || 0);
+
+                    draggableLetter.style.left = `${currentX + dx}px`;
+                    draggableLetter.style.top = `${currentY + dy}px`;
+
+                    // Show arrow if below threshold line
+                    let closestGap = null;
+                    let closestGapMidpoint = { x: 0, y: 0 };
+
+                    if (currentY <= thresholdY) { // Arrow only appears near ALPHABET string
+                        for (let i = -1; i < letters.length; i++) {
+                            let leftX, rightX;
+
+                            if (i === -1) { // Before the first letter
+                                leftX = startX - spacing * 1.5;
+                                rightX = parseFloat(letters[0].style.left);
+                            } else if (i === letters.length - 1) { // After the last letter
+                                leftX = parseFloat(letters[letters.length - 1].style.left);
+                                rightX = leftX + spacing * 1.5;
+                            } else { // Between two letters
+                                leftX = parseFloat(letters[i].style.left);
+                                rightX = parseFloat(letters[i + 1].style.left);
+                            }
+
+                            if (currentX > leftX && currentX < rightX) {
+                                closestGap = i;
+                                closestGapMidpoint.x = (leftX + rightX) / 2;
+                                closestGapMidpoint.y = startY + 30; // Adjust for arrow below letters
+                                break;
+                            }
+                        }
+                    }
+
+                    if (closestGap !== null) {
+                        dropPosition = closestGap;
+                        arrow.style.left = `${closestGapMidpoint.x - 10}px`; // Center arrow
+                        arrow.style.top = `${closestGapMidpoint.y}px`;
+                        arrow.style.display = 'block';
+                    } else {
+                        dropPosition = null;
+                        arrow.style.display = 'none';
+                    }
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                if (isDragging) {
+                    isDragging = false;
+                    draggableLetter.classList.remove('dragging');
+
+                    if (dropPosition !== null) {
+                        const insertionIndex = dropPosition + 1;
+                        stringLetters =
+                            stringLetters.slice(0, insertionIndex) +
+                            draggableLetter.textContent +
+                            stringLetters.slice(insertionIndex);
+                        renderString();
+                        endTurn();
+                    }
+
+                    arrow.style.display = 'none'; // Ensure the arrow disappears after dropping
+
+                    draggableLetter.style.left = `${startX + col * spacing}px`;
+                    draggableLetter.style.top = `${draggableStartY + rowSpacing * row}px`;
+                }
+            });
+        }
+    }
+
+    createDraggableAlphabet();
+
+    function confirmRestartGame() {
+        const confirmReset = confirm("Are you sure you want to restart the game? This will reset all scores and player names.");
+        if (confirmReset) {
+            restartGame();
+        }
+    }
+
+    function restartGame() {
+        stringLetters = randomLetter();
+        playerScores = { 1: 0, 2: 0 };
+        playerNames[1] = prompt("Enter Player 1's name:", "Player 1") || "Player 1";
+        playerNames[2] = prompt("Enter Player 2's name:", "Player 2") || "Player 2";
+        currentPlayer = 1;
+        renderString();
+        updatePlayerInfo();
+        document.getElementById("output").textContent = ""; // Clear output
+    }
+
+    function resetForNextRound() {
+        stringLetters = randomLetter();
+        renderString();
+        updatePlayerInfo();
+    }
+
+    function endTurn() {
+        currentPlayer = currentPlayer === 1 ? 2 : 1;
+        updatePlayerInfo();
+    }
+
+    function checkWord() {
+        const output = document.getElementById("output");
+        if (dictionary.includes(stringLetters)) {
+            output.textContent = `${playerNames[currentPlayer]} wins: "${stringLetters}" is not a valid word!`;
+            playerScores[currentPlayer]++;
+        } else {
+            output.textContent = `${playerNames[currentPlayer]} loses: "${stringLetters}" is a valid word!`;
+            playerScores[currentPlayer === 1 ? 2 : 1]++;
+        }
+        resetForNextRound();
+    }
+
+    function challengePlayer() {
+        const challengedPlayer = currentPlayer === 1 ? 2 : 1;
+        const newWord = prompt(`${playerNames[challengedPlayer]}, enter the word you believe can be formed:`).toUpperCase();
+        if (!newWord) return;
+
+        const output = document.getElementById("output");
+
+        if (!dictionary.includes(newWord)) {
+            output.textContent = `${playerNames[currentPlayer]} wins: "${newWord}" is not a valid word!`;
+            playerScores[currentPlayer]++;
+        } else if (isValidSubstring(stringLetters, newWord)) {
+            output.textContent = `${playerNames[challengedPlayer]} wins: "${newWord}" is valid and contains "${stringLetters}" as a substring!`;
+            playerScores[challengedPlayer]++;
+        } else {
+            output.textContent = `${playerNames[currentPlayer]} wins: "${newWord}" does not contain "${stringLetters}" as a substring!`;
+            playerScores[currentPlayer]++;
+        }
+        resetForNextRound();
+    }
+
+    function isValidSubstring(sub, full) {
+        let i = 0;
+        for (let char of full) {
+            if (char === sub[i]) {
+                i++;
+            }
+            if (i === sub.length) {
+                return true;
+            }
+        }
+        return false;
+    }
+</script>
+
+</body>
+</html>
