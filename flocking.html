@@ -83,123 +83,373 @@
 	</div>
 </section>
 
+<canvas id="boidsCanvas"  style="border: 2px solid black;"></canvas>
 
-
-<canvas id="visual"></canvas>
 <script>
-const canvas = document.getElementById("visual");
-const ctx = canvas.getContext("2d");
+    const canvas = document.getElementById('boidsCanvas');
+    const ctx = canvas.getContext('2d');
+    const pauseButton = document.getElementById('pauseButton');
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
-// Replace with the URL of your image
-const img = new Image();
-img.crossOrigin = "Anonymous"; // Ensure cross-origin compatibility if the image is from another domain
-img.src = "https://i.imgur.com/11YYthY.png"; // Update with your image URL
+    const BOID_COUNT = 40;
+    const BOID_SIZE = 5;
+    const MAX_SPEED = 4;
+    const MIN_SPEED = 2;
+    const MAX_ACCELERATION = 0.1;
+    const ALIGNMENT_RADIUS = 100;
+    const COHESION_RADIUS = 100;
+    const SEPARATION_RADIUS = 20;
+    const CENTER_ATTRACTION = 0.1;
 
-const points = [];
-const attractionStrength = 0.03;
-const repulsionStrength = 5000;
+    const ALIGNMENT_FACTOR = 0.02;
+    const COHESION_FACTOR = 0.004;
+    const SEPARATION_FACTOR = 0.16;
 
-// Load image and extract points for letters only
-img.onload = function () {
-  const tempCanvas = document.createElement("canvas");
-  const tempCtx = tempCanvas.getContext("2d");
-  tempCanvas.width = img.width;
-  tempCanvas.height = img.height;
-  tempCtx.drawImage(img, 0, 0);
+    class Boid {
+        constructor(x, y, velocityX, velocityY) {
+            this.position = { x, y };
+            this.velocity = { x: velocityX, y: velocityY };
+        }
 
-  const imageData = tempCtx.getImageData(0, 0, img.width, img.height);
-  const data = imageData.data;
+        update(boids) {
+            let alignment = { x: 0, y: 0 };
+            let cohesion = { x: 0, y: 0 };
+            let separation = { x: 0, y: 0 };
+            let total = 0;
 
-  const scaleX = canvas.width / img.width;
-  const scaleY = canvas.height / img.height;
-  const scale = Math.min(scaleX, scaleY);
-  const offsetX = (canvas.width - img.width * scale) / 2;
-  const offsetY = (canvas.height - img.height * scale) / 2;
+            for (let other of boids) {
+                const dx = other.position.x - this.position.x;
+                const dy = other.position.y - this.position.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
 
-  for (let y = 0; y < img.height; y++) {
-    for (let x = 0; x < img.width; x++) {
-      const index = (y * img.width + x) * 4;
-      const red = data[index];
-      const green = data[index + 1];
-      const blue = data[index + 2];
-      const alpha = data[index + 3];
+                if (other !== this && distance < ALIGNMENT_RADIUS) {
+                    // Alignment: Match velocity with nearby boids
+                    alignment.x += other.velocity.x;
+                    alignment.y += other.velocity.y;
 
-      if (alpha > 128 && red < 200 && green < 200 && blue < 200) {
-        points.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          homeX: x * scale + offsetX,
-          homeY: y * scale + offsetY,
-          vx: 0,
-          vy: 0,
-        });
-      }
+                    // Cohesion: Move toward the center of nearby boids
+                    cohesion.x += other.position.x;
+                    cohesion.y += other.position.y;
+
+                    total++;
+                }
+
+                if (other !== this && distance < SEPARATION_RADIUS) {
+                    // Separation: Avoid crowding nearby boids
+                    separation.x -= dx / distance;
+                    separation.y -= dy / distance;
+                }
+            }
+
+            if (total > 0) {
+                // Average alignment
+                alignment.x /= total;
+                alignment.y /= total;
+
+                // Average cohesion
+                cohesion.x /= total;
+                cohesion.y /= total;
+                cohesion.x -= this.position.x;
+                cohesion.y -= this.position.y;
+            }
+
+            // Attraction to center
+            const center = { x: canvas.width / 2, y: canvas.height / 2 };
+            const toCenter = {
+                x: center.x - this.position.x,
+                y: center.y - this.position.y,
+            };
+
+            // Compute acceleration
+            let accelerationX = alignment.x * ALIGNMENT_FACTOR + cohesion.x * COHESION_FACTOR + separation.x * SEPARATION_FACTOR + Math.sign(toCenter.x) * CENTER_ATTRACTION;
+            let accelerationY = alignment.y * ALIGNMENT_FACTOR + cohesion.y * COHESION_FACTOR + separation.y * SEPARATION_FACTOR + Math.sign(toCenter.y) * CENTER_ATTRACTION;
+
+            // Limit acceleration
+            const accelerationMagnitude = Math.sqrt(accelerationX ** 2 + accelerationY ** 2);
+            if (accelerationMagnitude > MAX_ACCELERATION) {
+                accelerationX = (accelerationX / accelerationMagnitude) * MAX_ACCELERATION;
+                accelerationY = (accelerationY / accelerationMagnitude) * MAX_ACCELERATION;
+            }
+
+            // Adjust velocity
+            this.velocity.x += accelerationX;
+            this.velocity.y += accelerationY;
+
+            // Limit speed
+            const speed = Math.sqrt(this.velocity.x ** 2 + this.velocity.y ** 2);
+            if (speed > MAX_SPEED) {
+                this.velocity.x = (this.velocity.x / speed) * MAX_SPEED;
+                this.velocity.y = (this.velocity.y / speed) * MAX_SPEED;
+            } else if (speed < MIN_SPEED) {
+                this.velocity.x = (this.velocity.x / speed) * MIN_SPEED;
+                this.velocity.y = (this.velocity.y / speed) * MIN_SPEED;
+            }
+
+            // Update position
+            this.position.x += this.velocity.x;
+            this.position.y += this.velocity.y;
+
+            // Wrap around edges
+            //if (this.position.x > canvas.width) this.position.x = 0;
+            //if (this.position.x < 0) this.position.x = canvas.width;
+            //if (this.position.y > canvas.height) this.position.y = 0;
+            //if (this.position.y < 0) this.position.y = canvas.height;
+        }
+
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.position.x, this.position.y, BOID_SIZE, 0, Math.PI * 2);
+            ctx.fillStyle = 'blue';
+            ctx.fill();
+        }
     }
-  }
 
-  loop();
-};
+    const boids = [];
 
-let mouse = { x: null, y: null };
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    const radius = 100; // Initial cluster radius
 
-canvas.addEventListener("mousemove", (event) => {
-  const rect = canvas.getBoundingClientRect();
-  mouse.x = event.clientX - rect.left;
-  mouse.y = event.clientY - rect.top;
-});
-
-canvas.addEventListener("mouseleave", () => {
-  mouse.x = null;
-  mouse.y = null;
-});
-
-function update() {
-  points.forEach((point) => {
-    const dxToHome = point.homeX - point.x;
-    const dyToHome = point.homeY - point.y;
-    point.vx += dxToHome * attractionStrength;
-    point.vy += dyToHome * attractionStrength;
-
-    if (mouse.x !== null && mouse.y !== null) {
-      const dxToMouse = point.x - mouse.x;
-      const dyToMouse = point.y - mouse.y;
-      const distanceSquared = dxToMouse * dxToMouse + dyToMouse * dyToMouse;
-
-      if (distanceSquared < 50000) {
-        const force = repulsionStrength / distanceSquared;
-        point.vx += (dxToMouse / Math.sqrt(distanceSquared)) * force;
-        point.vy += (dyToMouse / Math.sqrt(distanceSquared)) * force;
-      }
+    for (let i = 0; i < BOID_COUNT; i++) {
+        const x = centerX + 200 + Math.random()*100;
+        const y = centerY + Math.random()*100;
+        const velocityX = Math.random()-0.5;
+        const velocityY = Math.random()-0.5;
+        boids.push(new Boid(x, y, velocityX, velocityY));
     }
 
-    point.x += point.vx;
-    point.y += point.vy;
-    point.vx *= 0.75;
-    point.vy *= 0.75;
-  });
-}
+    let animationFrame;
+    let isRunning = true;
 
-function draw() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = "#ff4757";
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (let boid of boids) {
+            boid.update(boids);
+            boid.draw();
+        }
+        animationFrame = requestAnimationFrame(animate);
+    }
 
-  points.forEach((point) => {
-    ctx.beginPath();
-    ctx.arc(point.x, point.y, 2, 0, Math.PI * 2);
-    ctx.fill();
-  });
-}
+    function toggleAnimation() {
+        if (isRunning) {
+            cancelAnimationFrame(animationFrame);
+        } else {
+            animate();
+        }
+        isRunning = !isRunning;
+    }
 
-function loop() {
-  update();
-  draw();
-  requestAnimationFrame(loop);
-}
 
+    const observer = new IntersectionObserver(
+        ([entry]) => {
+            if (entry.isIntersecting && !isRunning) {
+                toggleAnimation();
+            } else if (!entry.isIntersecting && isRunning) {
+                toggleAnimation();
+            }
+        },
+        { threshold: 0.1 }
+    );
+
+    observer.observe(canvas);
+    animate();
+
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    });
 </script>
+
+
+
+
+
+
+
+<!--
+<canvas id="boidsCanvasCursor" style="border: 2px solid black;"></canvas>
+
+
+<script>
+    const canvas2 = document.getElementById('boidsCanvasCursor');
+    const ctx2 = canvas2.getContext('2d');
+
+    canvas2.width = window.innerWidth;
+    canvas2.height = window.innerHeight;
+
+
+    const BOID_COUNT2 = 40;
+    const BOID_SIZE2 = 5;
+    const MAX_SPEED2 = 4;
+    const MIN_SPEED2 = 2;
+    const MAX_ACCELERATION2 = 0.1;
+    const ALIGNMENT_RADIUS2 = 100;
+    const COHESION_RADIUS2 = 100;
+    const SEPARATION_RADIUS2 = 20;
+    const CENTER_ATTRACTION2 = 0.1;
+    const CURSOR_AVOIDANCE_RADIUS = 100;
+    const CURSOR_AVOIDANCE_FACTOR = 2.0;
+
+    const ALIGNMENT_FACTOR2 = 0.02;
+    const COHESION_FACTOR2 = 0.004;
+    const SEPARATION_FACTOR2 = 0.16;
+
+    let cursorPosition = { x: null, y: null };
+
+    canvas2.addEventListener('mousemove', (event) => {
+        const rect = canvas2.getBoundingClientRect();
+        cursorPosition.x = event.clientX - rect.left;
+        cursorPosition.y = event.clientY - rect.top;
+    });
+
+    canvas2.addEventListener('mouseleave', () => {
+        cursorPosition.x = null;
+        cursorPosition.y = null;
+    });
+
+    class Boid2 {
+        constructor(x, y, velocityX, velocityY) {
+            this.position = { x, y };
+            this.velocity = { x: velocityX, y: velocityY };
+        }
+
+        update(boids) {
+            let alignment = { x: 0, y: 0 };
+            let cohesion = { x: 0, y: 0 };
+            let separation = { x: 0, y: 0 };
+            let total = 0;
+
+            for (let other of boids) {
+                const dx = other.position.x - this.position.x;
+                const dy = other.position.y - this.position.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (other !== this && distance < ALIGNMENT_RADIUS2) {
+                    alignment.x += other.velocity.x;
+                    alignment.y += other.velocity.y;
+
+                    cohesion.x += other.position.x;
+                    cohesion.y += other.position.y;
+
+                    total++;
+                }
+
+                if (other !== this && distance < SEPARATION_RADIUS2) {
+                    separation.x -= dx / distance;
+                    separation.y -= dy / distance;
+                }
+            }
+
+            if (total > 0) {
+                alignment.x /= total;
+                alignment.y /= total;
+
+                cohesion.x = cohesion.x / total - this.position.x;
+                cohesion.y = cohesion.y / total - this.position.y;
+            }
+
+            let cursorAvoidance = { x: 0, y: 0 };
+
+            if (cursorPosition.x !== null && cursorPosition.y !== null) {
+                const dx = cursorPosition.x - this.position.x;
+                const dy = cursorPosition.y - this.position.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < CURSOR_AVOIDANCE_RADIUS) {
+                    cursorAvoidance.x -= dx / distance * CURSOR_AVOIDANCE_FACTOR;
+                    cursorAvoidance.y -= dy / distance * CURSOR_AVOIDANCE_FACTOR;
+                }
+            }
+
+
+            // Attraction to center
+            const center = { x: canvas2.width / 2, y: canvas2.height / 2 };
+            const toCenter = {
+                x: center.x - this.position.x,
+                y: center.y - this.position.y,
+            };
+
+            let accelerationX = alignment.x * ALIGNMENT_FACTOR2 + cohesion.x * COHESION_FACTOR2 + separation.x * SEPARATION_FACTOR2 + Math.sign(toCenter.x) * CENTER_ATTRACTION2 + cursorAvoidance.x;
+            let accelerationY = alignment.y * ALIGNMENT_FACTOR2 + cohesion.y * COHESION_FACTOR2 + separation.y * SEPARATION_FACTOR2 + Math.sign(toCenter.y) * CENTER_ATTRACTION2 + cursorAvoidance.y;
+
+            const accelerationMagnitude = Math.sqrt(accelerationX ** 2 + accelerationY ** 2);
+            if (accelerationMagnitude > MAX_ACCELERATION2) {
+                accelerationX = (accelerationX / accelerationMagnitude) * MAX_ACCELERATION2;
+                accelerationY = (accelerationY / accelerationMagnitude) * MAX_ACCELERATION2;
+            }
+
+            this.velocity.x += accelerationX;
+            this.velocity.y += accelerationY;
+
+            const speed = Math.sqrt(this.velocity.x ** 2 + this.velocity.y ** 2);
+            if (speed > MAX_SPEED2) {
+                this.velocity.x = (this.velocity.x / speed) * MAX_SPEED2;
+                this.velocity.y = (this.velocity.y / speed) * MAX_SPEED2;
+            } else if (speed < MIN_SPEED2) {
+                this.velocity.x = (this.velocity.x / speed) * MIN_SPEED2;
+                this.velocity.y = (this.velocity.y / speed) * MIN_SPEED2;
+            }
+
+            this.position.x += this.velocity.x;
+            this.position.y += this.velocity.y;
+
+            //if (this.position.x > canvas2.width) this.position.x = 0;
+            //if (this.position.x < 0) this.position.x = canvas2.width;
+            //if (this.position.y > canvas2.height) this.position.y = 0;
+            //if (this.position.y < 0) this.position.y = canvas2.height;
+        }
+
+        draw() {
+            ctx2.beginPath();
+            ctx2.arc(this.position.x, this.position.y, BOID_SIZE2, 0, Math.PI * 2);
+            ctx2.fillStyle = 'blue';
+            ctx2.fill();
+        }
+    }
+
+    const boids2 = [];
+    const centerX2 = canvas2.width / 2;
+    const centerY2 = canvas2.height / 2;
+    const radius2 = 100;
+
+    for (let i = 0; i < BOID_COUNT2; i++) {
+      const x = centerX + 200 + Math.random()*100;
+        const y = centerY + Math.random()*100;
+        const velocityX = Math.random()-0.5;
+        const velocityY = Math.random()-0.5;
+        boids2.push(new Boid2(x, y, velocityX, velocityY));
+    }
+
+    function animate2() {
+        ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
+
+        if (cursorPosition.x !== null && cursorPosition.y !== null) {
+            ctx2.beginPath();
+            ctx2.arc(cursorPosition.x, cursorPosition.y, CURSOR_AVOIDANCE_RADIUS, 0, Math.PI * 2);
+            ctx2.strokeStyle = 'red';
+            ctx2.stroke();
+        }
+
+        for (let boid of boids2) {
+            boid.update(boids2);
+            boid.draw();
+        }
+
+        requestAnimationFrame(animate2);
+    }
+
+    animate2();
+
+    window.addEventListener('resize', () => {
+        canvas2.width = window.innerWidth;
+        canvas2.height = window.innerHeight;
+    });
+</script>
+-->
+
+
   
 
 <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>  <script src="assets/smoothscroll/smooth-scroll.js"></script>  <script src="assets/ytplayer/index.js"></script>  <script src="assets/dropdown/js/navbar-dropdown.js"></script>  <script src="assets/theme/js/script.js"></script>  
