@@ -256,6 +256,7 @@
 
 
 <canvas id="visual"></canvas>
+
 <script>
 const canvas = document.getElementById("visual");
 const ctx = canvas.getContext("2d");
@@ -271,6 +272,7 @@ img.src = "https://i.imgur.com/NXp1uht.png"; // Update with your image URL
 const points = [];
 const attractionStrength = 0.03;
 const repulsionStrength = 5000;
+let burstStrength = 0; // Strength of the burst effect
 
 // Load image and extract points for letters only
 img.onload = function () {
@@ -313,6 +315,7 @@ img.onload = function () {
   loop();
 };
 
+// Track mouse position
 let mouse = { x: null, y: null };
 
 canvas.addEventListener("mousemove", (event) => {
@@ -324,6 +327,11 @@ canvas.addEventListener("mousemove", (event) => {
 canvas.addEventListener("mouseleave", () => {
   mouse.x = null;
   mouse.y = null;
+});
+
+// Add burst effect on click
+canvas.addEventListener("click", () => {
+  burstStrength = 150000; // Initial burst strength
 });
 
 function update() {
@@ -338,37 +346,68 @@ function update() {
       const dyToMouse = point.y - mouse.y;
       const distanceSquared = dxToMouse * dxToMouse + dyToMouse * dyToMouse;
 
-      if (distanceSquared < 50000) {
+      // Normal repulsion
+      if (distanceSquared < 500000) {
         const force = repulsionStrength / distanceSquared;
         point.vx += (dxToMouse / Math.sqrt(distanceSquared)) * force;
         point.vy += (dyToMouse / Math.sqrt(distanceSquared)) * force;
+      }
+
+      // Burst effect
+      if (burstStrength > 0) {
+        const burstForce = burstStrength / distanceSquared;
+        point.vx += (dxToMouse / Math.sqrt(distanceSquared)) * burstForce;
+        point.vy += (dyToMouse / Math.sqrt(distanceSquared)) * burstForce;
       }
     }
 
     point.x += point.vx;
     point.y += point.vy;
-    point.vx *= 0.75;
-    point.vy *= 0.75;
+    point.vx *= 0.9;
+    point.vy *= 0.9;
   });
+
+  // Gradually reduce the burst strength
+  if (burstStrength > 0) {
+    burstStrength *= 0.9; // Adjust this factor to control how quickly the burst fades
+    if (burstStrength < 1) burstStrength = 0;
+  }
 }
 
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = "#000000";
 
   points.forEach((point) => {
+    // Calculate distance from home position
+    const dx = point.homeX - point.x;
+    const dy = point.homeY - point.y;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+
+    // Map the distance to a color
+    const maxDistance = canvas.width / 5; // Adjust this value for color sensitivity
+    const normalizedDistance = Math.min(distance / maxDistance, 1);
+    const color = `rgba(0, 0, 0, 1)`; // Gradient from black (near) to red (far)
+
+    // Map the distance to a size
+    const minSize = 2; // Minimum point size
+    const maxSize = 10; // Maximum point size
+    const size = minSize + (maxSize - minSize) * normalizedDistance;
+
+    ctx.fillStyle = color;
+
     ctx.beginPath();
-    ctx.arc(point.x, point.y, 2, 0, Math.PI * 2);
+    ctx.arc(point.x, point.y, size, 0, Math.PI * 2); // Use size for the point's radius
     ctx.fill();
   });
 }
+
+
 
 function loop() {
   update();
   draw();
   requestAnimationFrame(loop);
 }
-
 </script>
 
 
