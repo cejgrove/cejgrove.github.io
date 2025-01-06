@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html  >
+<head>
+  <!-- Site made with Mobirise Website Builder v5.9.18, https://mobirise.com -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Mobirise v5.9.18, mobirise.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <link rel="shortcut icon" href="assets/images/favicon-1.ico" type="image/x-icon">
+  <meta name="description" content="A tool for simulating the evolution of flocking behaviours">
+  
+  
+  <title>Boid Evolution Sandbox</title>
+  <link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
+  <link rel="stylesheet" href="assets/dropdown/css/style.css">
+  <link rel="stylesheet" href="assets/theme/css/style.css">
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Inter+Tight:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter+Tight:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap"></noscript>
+  <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css?v=eHGn8U"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css?v=eHGn8U" type="text/css">
+
+  
+  
+  
+</head>
+<body>
+  
+  <section data-bs-version="5.1" class="menu menu1 cid-uxIo30R6fm" once="menu" id="menu01-12">
+	
+
+	<nav class="navbar navbar-dropdown navbar-expand-lg">
+		<div class="container">
+			<div class="navbar-brand">
+				
+				<span class="navbar-caption-wrap"><a class="navbar-caption text-black text-primary display-4" href="index.html">Cameron Grove</a></span>
+			</div>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbarSupportedContent" data-bs-target="#navbarSupportedContent" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+				<div class="hamburger">
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true"><li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="index.html">Home</a></li><li class="nav-item">
+						<a class="nav-link link text-black text-primary display-4" href="about.html">About Me</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link link text-black text-primary display-4" href="https://baseballaheadinthecount.blogspot.com/" aria-expanded="false" target="_blank">Blog</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link link text-black text-primary display-4" href="contact.html">Contact</a>
+					</li></ul>
+				
+				
+			</div>
+		</div>
+	</nav>
+</section>
+
+<section data-bs-version="5.1" class="content4 cid-uxV3PF52Z1" id="list02-l">
+    
+
+    
+    
+  <div class="container">
+      <div class="row justify-content-center">
+          <div class="col-lg-12">
+              <div class="title col-md-12 mb-5">
+                  
+                  
+              </div>
+              <div class="item features-without-image col-12">
+                  <div class="item-wrapper">
+                      <div class="card-box align-left">
+                          <h5 class="card-title mbr-fonts-style mb-3 display-5">
+                              <strong>Introduction</strong></h5>
+                          <p class="card-text mbr-fonts-style mb-5 display-7">
+                              </p>
+                      </div>
+                  </div>
+              </div>
+              
+              
+          </div>
+      </div>
+  </div>
+</section>
+
+
+
+<div class="input-container"  style="text-align: center;">
+  <!-- Add input fields for some configuration values -->
+  <div>
+    <label for="boidCount">Boid Count:</label>
+    <input type="number" id="boidCount" value="80" step="1" min="5" max="150">
+  </div>
+  <div>
+      <label for="minSpeed">Min Boid Speed:</label>
+      <input type="number" id="minSpeed" step="0.1" value="3" min="1" max="15">
+    </div>
+  <div>
+    <label for="maxSpeed">Max Boid Speed:</label>
+    <input type="number" id="maxSpeed" step="0.1" value="5">
+  </div>
+  <div>
+      <label for="maxAccel">Max Boid Acceleration:</label>
+      <input type="number" id="maxAccel" step="0.1" value="0.5" min="0.1" max="15">
+    </div>
+    <div>
+      <label for="separationRadius">Initial Separation Radius:</label>
+      <input type="number" id="separationRadius" value="15" min="0" max="1000" step="0.1">
+      <label for="sdSeparationRadius">Separation Radius Evolution Spread:</label>
+      <input type="number" id="sdSeparationRadius" value="5" min="0" max="100" step="0.1">  
+  </div>
+    <div>
+      <label for="alignmentRadius">Initial Alignment Radius:</label>
+      <input type="number" id="alignmentRadius" value="100" min="0" max="1000" step="0.1">
+      <label for="sdAlignmentRadius">Alignment Radius Evolution Spread:</label>
+      <input type="number" id="sdAlignmentRadius" value="50" min="0" max="1000" step="0.1">
+    </div>
+    <div>
+      <label for="centerRadius">Initial Center Attraction Radius:</label>
+      <input type="number" id="centerRadius" value="150" min="0.1" max="1000" step="0.1">
+      <label for="sdCenterRadius">Center Attraction Radius Evolution Spread:</label>
+      <input type="number" id="sdCenterRadius" value="50" min="0" max="1000" step="0.1">
+    </div>
+    <div>
+      <label for="predRadius">Initial Predator Avoidance Radius:</label>
+      <input type="number" id="predRadius" value="150" min="0.1" max="1000" step="0.1">
+      <label for="sdPredRadius">Predator Avoidance Radius Evolution Spread:</label>
+      <input type="number" id="sdPredRadius" value="0" min="0" max="1000" step="0.1">
+    </div>
+  <div>
+    <label for="centerAttraction">Initial Center Attraction:</label>
+    <input type="number" id="centerAttraction" step="0.001" value="0.001">
+    <label for="sdCenterAttraction">Center Attraction Evolution Spread:</label>
+    <input type="number" id="sdCenterAttraction" step="0.001" value="0.1" min="0">
+  </div>
+  <div>
+      <label for="separation">Initial Separation Strength:</label>
+      <input type="number" id="separation" step="0.001" value="0">
+      <label for="sdSeparation">Separation Strength Evolution Spread:</label>
+      <input type="number" id="sdSeparation" step="0.001" value="1.000" min="0">
+    </div>
+    <div>
+      <label for="cohesion">Initial Cohesion Strength:</label>
+      <input type="number" id="cohesion" step="0.001" value="0.00">
+      <label for="sdCohesion">Cohesion Strength Evolution Spread:</label>
+      <input type="number" id="sdCohesion" step="0.001" value="0.05" min="0">
+    </div>
+    <div>
+      <label for="alignment">Initial Alignment Strength:</label>
+      <input type="number" id="alignment" step="0.001" value="0.00">
+      <label for="sdAlignment">Alignment Strength Evolution Spread:</label>
+      <input type="number" id="sdAlignment" step="0.001" value="0.05" min="0">
+    </div>
+    <div>
+      <label for="predAvoid">Initial Predator Avoidance Strength:</label>
+      <input type="number" id="predAvoid" step="0.001" value="0">
+      <label for="sdPredAvoid">Predator Avoidance Strength Evolution Spread:</label>
+      <input type="number" id="sdPredAvoid" step="0.001" value="2.0" min="0">
+    </div>
+    <div>
+      <label for="predCount">Number of Predators:</label>
+      <input type="number" id="predCount" step="1" value="4" min="1" max="15">
+    </div>
+    <div>
+      <label for="predMinSpeed">Min Predator Speed:</label>
+      <input type="number" id="predMinSpeed" step="0.1" value="0" min="1" max="15">
+    </div>
+  <div>
+    <label for="predMaxSpeed">Max Predator Speed:</label>
+    <input type="number" id="predMaxSpeed" step="0.1" value="6">
+  </div>
+  <div>
+      <label for="predMaxAccel">Max Predator Acceleration:</label>
+      <input type="number" id="predMaxAccel" step="0.1" value="10" min="0.1" max="15">
+    </div>
+    <div>
+      <label for="predKill">Predator Kill Radius (How close to trigger a predator kill?):</label>
+      <input type="number" id="predKill" step="0.1" value="5" min="0.1">
+    </div>
+    <div>
+      <label for="collisionKill">Collision Kill Radius (How close to trigger a boid collision kill?) Set to zero for no collisions:</label>
+      <input type="number" id="collisionKill" step="0.1" value="1.0" min="0.0">
+    </div>
+    <div>
+      <label for="collisionKillFactor">Fraction of max boid velocity to trigger a collision kill (higher = only head-on high speed collisions, 0 = any boids within collision radius get killed):</label>
+      <input type="number" id="collisionKillFactor" step="0.1" value="1.0" min="0.0" max="2.0">
+    </div>
+    <div>
+      <label for="spawnX">New Boid Spawn Point Horizontal Position:</label>
+      <input type="number" id="spawnX" step="0.1" value="0.5" min="0.1" max="0.9">
+    </div>
+    <div>
+      <label for="spawnY">New Boid Spawn Point Vertical Position:</label>
+      <input type="number" id="spawnY" step="0.1" value="0.5" min="0.1" max="0.9">
+    </div>
+    <div>
+      <label for="spawnVeloX">New Boid Spawn Horizontal Velocity:</label>
+      <input type="number" id="spawnVeloX" step="0.1" value="0">
+    </div>
+    <div>
+      <label for="spawnVeloY">New Boid Spawn Vertical Velocity:</label>
+      <input type="number" id="spawnVeloY" step="0.1" value="0">
+    </div>
+  
+</div>
+<div style="text-align: center; font-size: 40px;">
+  <button id="startSimulation"><b><u>Go</u></b></button>
+</div>
+
+<div style="text-align: center; margin-top: 20px;">
+  <label for="simulationSpeed">Simulation Speed:</label>
+  <input type="range" id="simulationSpeed" min="1" max="100" value="50">
+</div>
+
+
+<canvas id="predEvolSimulation1"></canvas>
+<div style="display: flex; flex-direction: column; align-items: center; margin-top: 20px;">
+<canvas id="summaryGraph" width="1000" height="500" style="border:1px solid black;"></canvas>
+<div id="legend" style="margin-top: 10px; display: flex; flex-wrap: wrap; gap: 10px;">
+  <div>
+    <span style="display: inline-block; width: 20px; height: 10px; background-color: blue; margin-right: 5px;"></span>
+    <label for="showAlignmentFactor">Avg Alignment Factor</label>
+  </div>
+  <div>
+    <span style="display: inline-block; width: 20px; height: 10px; background-color: green; margin-right: 5px;"></span>
+    <label for="showCohesionFactor">Avg Cohesion Factor</label>
+  </div>
+  <div>
+    <span style="display: inline-block; width: 20px; height: 10px; background-color: purple; margin-right: 5px;"></span>
+    <label for="showCenterAttraction">Avg Center Attraction</label>
+  </div>
+  <div>
+    <span style="display: inline-block; width: 20px; height: 10px; background-color: red; margin-right: 5px;"></span>
+    <label for="showPredatorAvoidanceFactor">Avg Predator Avoidance Factor</label>
+  </div>
+  </div>
+  <div id="legend" style="margin-top: 10px; display: flex; flex-wrap: wrap; gap: 10px;">
+    <div>
+      <span style="display: inline-block; width: 20px; height: 10px; background-color: orange; margin-right: 5px;"></span>
+      <label for="showAlignmentRadius">Avg Alignment/Cohesion Radius</label>
+    </div>
+    <div>
+      <span style="display: inline-block; width: 20px; height: 10px; background-color: darkgoldenrod; margin-right: 5px;"></span>
+      <label for="showCenterRadius">Avg Center Attraction Radius</label>
+    </div>
+    <div>
+      <span style="display: inline-block; width: 20px; height: 10px; background-color: coral; margin-right: 5px;"></span>
+      <label for="showPredatorRadius">Avg Predator Avoidance Radius</label>
+    </div>
+    </div>
+    <div id="legend" style="margin-top: 10px; display: flex; flex-wrap: wrap; gap: 10px;">
+    <div>
+      <span style="display: inline-block; width: 20px; height: 10px; background-color: darkred; margin-right: 5px;"></span>
+      <label for="showTotalKillCounter">Total Kill Counter</label>
+    </div>
+    <div>
+      <span style="display: inline-block; width: 20px; height: 10px; background-color: pink; margin-right: 5px;"></span>
+      <label for="showPredatorKillcounter">Predator Kill Counter</label>
+    </div>
+    <div>
+      <span style="display: inline-block; width: 20px; height: 10px; background-color: yellow; margin-right: 5px;"></span>
+      <label for="showCollisionKillCounter">Collision Kill Counter</label>
+    </div>
+    <div>
+      <span style="display: inline-block; width: 20px; height: 10px; background-color: lightgreen; margin-right: 5px;"></span>
+      <label for="showDistanceKillCounter">Distance Kill Counter</label>
+    </div>
+    </div>
+    
+<div id="checkboxContainer" style="margin-top: 10px;">
+  <label><input type="checkbox" id="showAlignmentFactor"> Avg Alignment Factor</label>
+  <label><input type="checkbox" id="showCohesionFactor" checked> Avg Cohesion Factor</label>
+  <label><input type="checkbox" id="showCenterAttraction"> Avg Center Attraction</label>
+  <label><input type="checkbox" id="showPredatorAvoidanceFactor"> Avg Predator Avoidance Factor</label>
+</div>
+<div id="checkboxContainer" style="margin-top: 10px;">
+<label><input type="checkbox" id="showAlignmentRadius"> Avg Alignment/Cohesion Radius</label>
+  <label><input type="checkbox" id="showCenterRadius"> Avg Center Attraction Radius</label>
+  <label><input type="checkbox" id="showPredatorAvoidanceRadius"> Avg Predator Avoidance Radius</label>
+</div>
+  <div id="checkboxContainer" style="margin-top: 10px;">
+  <label><input type="checkbox" id="showKillCounter"> Total Kill Counter</label>
+  <label><input type="checkbox" id="showKillCounterPred"> Predator Kill Counter</label>
+  <label><input type="checkbox" id="showKillCounterCollision"> Collision Kill Counter</label>
+  <label><input type="checkbox" id="showKillCounterDistance"> Distance Kill Counter</label>
+</div>
+</div>
+
+
+
+<script>
+
+
+const defaultConfig = {
+boidCount: 80,
+boidSize: 3,
+maxSpeed: 5,
+minSpeed: 3,
+maxAcceleration: 0.5,
+separationRadius_in: 10,
+alignmentRadius_in: 189,
+centerAttraction_in: 0.06,
+centerRadius_in: 210,
+predatorAvoidanceRadius_in: 100,
+separationFactor_in: 10,
+alignmentFactor_in: -0.048,
+cohesionFactor_in: 0.13,
+predatorAvoidanceFactor_in: 0.92,
+predMaxSpeed: 6,
+predMinSpeed: 0,
+predMaxAccel: 6.5,
+predSize: 5,
+sepKillRadius: 1.0,
+centerKillRadius: 1000,
+predKillRadius: 5,
+sdAlignmentFactor: 0.0,
+sdCohesionFactor: 0.0,
+sdCenterAttraction: 0.0,
+sdSeparationFactor: 0.0,
+sdPredatorAvoidanceFactor: 0.0,
+sdAlignmentRadius: 0,
+sdSeparationRadius: 0.0,
+sdCenterRadius: 0,
+sdPredatorAvoidanceRadius: 0.0,
+showStats: 1,
+collision_factor: 1.5,
+init_x: 300,
+init_y: 200,
+init_vx: -2,
+init_vy: 2,
+predCount: 4
+};
+
+let currentConfig = { ...defaultConfig };
+let animationFrame;
+let simulationInterval; // Declare a global variable for setInterval
+// let isAnimating = false; // To track animation state
+let animationInterval; // Store the current interval
+let currentSpeed = 50; // Default speed
+
+
+
+const initializeSimulation = () => {
+// Stop the previous interval and animation frame
+if (simulationInterval) clearInterval(simulationInterval);
+if (animationFrame) cancelAnimationFrame(animationFrame);
+//cancelAnimationFrame(animationFrame); // Stop previous simulation
+initializeFlockingSimulationPredatorEvolve('predEvolSimulation1', currentConfig);
+};
+
+document.getElementById('startSimulation').addEventListener('click', () => {
+currentConfig = {
+...defaultConfig,
+boidCount: parseInt(document.getElementById('boidCount').value),
+maxSpeed: parseFloat(document.getElementById('maxSpeed').value),
+minSpeed: parseFloat(document.getElementById('minSpeed').value),
+maxAcceleration: parseFloat(document.getElementById('maxAccel').value),
+separationRadius_in: parseFloat(document.getElementById('separationRadius').value),
+alignmentRadius_in: parseFloat(document.getElementById('alignmentRadius').value),
+centerAttraction_in: parseFloat(document.getElementById('centerAttraction').value),
+centerRadius_in: parseFloat(document.getElementById('centerRadius').value),
+predatorAvoidanceRadius_in: parseFloat(document.getElementById('predRadius').value),
+separationFactor_in: parseFloat(document.getElementById('separation').value),
+alignmentFactor_in: parseFloat(document.getElementById('alignment').value),
+cohesionFactor_in: parseFloat(document.getElementById('cohesion').value),
+predatorAvoidanceFactor_in: parseFloat(document.getElementById('predAvoid').value),
+predMaxSpeed: parseFloat(document.getElementById('predMaxSpeed').value),
+predMinSpeed: parseFloat(document.getElementById('predMinSpeed').value),
+predMaxAccel: parseFloat(document.getElementById('predMaxAccel').value),
+sepKillRadius: parseFloat(document.getElementById('collisionKill').value),
+predKillRadius: parseFloat(document.getElementById('predKill').value),
+sdAlignmentFactor: parseFloat(document.getElementById('sdAlignment').value),
+sdCohesionFactor: parseFloat(document.getElementById('sdCohesion').value),
+sdCenterAttraction: parseFloat(document.getElementById('sdCenterAttraction').value),
+sdSeparationFactor: parseFloat(document.getElementById('sdSeparation').value),
+sdPredatorAvoidanceFactor: parseFloat(document.getElementById('sdPredAvoid').value),
+sdAlignmentRadius: parseFloat(document.getElementById('sdAlignmentRadius').value),
+sdSeparationRadius: parseFloat(document.getElementById('sdSeparationRadius').value),
+sdCenterRadius: parseFloat(document.getElementById('sdCenterRadius').value),
+sdPredatorAvoidanceRadius: parseFloat(document.getElementById('sdPredRadius').value),
+collision_factor: parseFloat(document.getElementById('collisionKillFactor').value),
+init_x: parseFloat(document.getElementById('spawnX').value),
+init_y: parseFloat(document.getElementById('spawnY').value),
+init_vx: parseFloat(document.getElementById('spawnVeloX').value),
+init_vy: parseFloat(document.getElementById('spawnVeloY').value),
+predCount:parseFloat(document.getElementById('predCount').value),
+};
+
+summaryData = {
+alignmentFactor: [],
+cohesionFactor: [],
+centerAttraction: [],
+predatorAvoidanceFactor: [],
+alignmentRadius: [],
+centerRadius: [],
+predatorAvoidanceRadius: [],
+killCounter: [0],
+killCounterPred: [0],
+killCounterCollision: [0],
+killCounterDistance: [0]
+};
+initializeSimulation();
+});
+
+//initializeSimulation();
+
+let summaryData = {
+alignmentFactor: [],
+cohesionFactor: [],
+centerAttraction: [],
+predatorAvoidanceFactor: [],
+alignmentRadius: [],
+centerRadius: [],
+predatorAvoidanceRadius: [],
+killCounter: [0],
+killCounterPred: [0],
+killCounterCollision: [0],
+killCounterDistance: [0]
+};
+function initializeFlockingSimulationPredatorEvolve(canvasId, config) {
+    const canvas = document.getElementById(canvasId);
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    
+
+    const {
+      boidCount,
+      boidSize,
+      maxSpeed,
+      minSpeed,
+      maxAcceleration,
+      sepKillRadius,
+      centerKillRadius,
+      predKillRadius,
+      separationRadius_in,
+    alignmentRadius_in,
+    centerAttraction_in,
+    centerRadius_in,
+    predatorAvoidanceRadius_in,
+    separationFactor_in,
+    alignmentFactor_in,
+    cohesionFactor_in,
+    predatorAvoidanceFactor_in,
+      predMaxSpeed,
+      predMinSpeed,
+      predMaxAccel,
+      predSize,
+      sdAlignmentFactor,
+      sdCohesionFactor,
+      sdCenterAttraction,
+      sdSeparationFactor,
+      sdPredatorAvoidanceFactor,
+      sdAlignmentRadius,
+      sdSeparationRadius,
+      sdCenterRadius,
+      sdPredatorAvoidanceRadius,
+      showStats,
+      collision_factor,
+      init_x,
+      init_y,
+      init_vx,
+      init_vy,
+      predCount
+    } = config;
+
+    class Boid3{
+      constructor(x, y, velocityX, velocityY,
+      alignmentRadius,
+      separationRadius,
+      centerRadius,
+      predatorAvoidanceRadius,
+      alignmentFactor,
+      cohesionFactor,
+      centerAttraction,
+      separationFactor,
+      predatorAvoidanceFactor) {
+        this.position = { x, y };
+        this.velocity = { x: velocityX, y: velocityY };
+        this.alignmentRadius = alignmentRadius;
+        this.separationRadius = separationRadius;
+        this.centerRadius = centerRadius;
+        this.predatorAvoidanceRadius = predatorAvoidanceRadius;
+        this.alignmentFactor = alignmentFactor;
+        this.cohesionFactor = cohesionFactor;
+        this.centerAttraction = centerAttraction;
+        this.separationFactor = separationFactor;
+        this.predatorAvoidanceFactor = predatorAvoidanceFactor;
+      }
+
+      update(boids,preds) {
+        let alignment = { x: 0, y: 0 };
+        let cohesion = { x: 0, y: 0 };
+        let separation = { x: 0, y: 0 };
+        let total = 0;
+
+        for (let other of boids) {
+          const dx = other.position.x - this.position.x;
+          const dy = other.position.y - this.position.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (other !== this && distance < this.alignmentRadius) {
+            alignment.x += other.velocity.x;
+            alignment.y += other.velocity.y;
+            cohesion.x += other.position.x;
+            cohesion.y += other.position.y;
+            total++;
+          }
+
+
+
+          if (other !== this && distance < this.separationRadius) {
+            separation.x -= dx / distance;
+            separation.y -= dy / distance;
+          }
+        }
+
+        if (total > 0) {
+          alignment.x /= total;
+          alignment.y /= total;
+          cohesion.x /= total;
+          cohesion.y /= total;
+          cohesion.x -= this.position.x;
+          cohesion.y -= this.position.y;
+        }
+
+        let pred_force = {x:0,y:0};
+
+        let dist_pred;
+        for(let pred of preds){
+          dist_pred = Math.sqrt((this.position.x - pred.position.x)**2 + (this.position.y - pred.position.y)**2);
+          if(dist_pred <= this.predatorAvoidanceRadius){
+            pred_force.x += this.predatorAvoidanceFactor*(this.position.x - pred.position.x)/dist_pred;
+            pred_force.y += this.predatorAvoidanceFactor*(this.position.y - pred.position.y)/dist_pred;
+          }
+        }
+
+
+        const center = { x: canvas.width / 2, y: canvas.height / 2 };
+        const distanceToCenter = Math.sqrt(
+          (center.x - this.position.x) ** 2 +
+          (center.y - this.position.y) ** 2
+        );
+        let toCenter = { x: 0, y: 0 };
+        if (distanceToCenter > this.centerRadius) {
+          const factor = (distanceToCenter - this.centerRadius) / this.centerRadius;
+          toCenter.x = (center.x - this.position.x) * factor;
+          toCenter.y = (center.y - this.position.y) * factor;
+        }
+
+        let accelerationX =
+          alignment.x * this.alignmentFactor +
+          cohesion.x * this.cohesionFactor +
+          separation.x * this.separationFactor +
+          toCenter.x * this.centerAttraction +
+          pred_force.x;
+
+        let accelerationY =
+          alignment.y * this.alignmentFactor +
+          cohesion.y * this.cohesionFactor +
+          separation.y * this.separationFactor +
+          toCenter.y * this.centerAttraction +
+          pred_force.y;
+
+        const accelerationMagnitude = Math.sqrt(
+          accelerationX ** 2 + accelerationY ** 2
+        );
+        if (accelerationMagnitude > maxAcceleration) {
+          accelerationX = (accelerationX / accelerationMagnitude) * maxAcceleration;
+          accelerationY = (accelerationY / accelerationMagnitude) * maxAcceleration;
+        }
+
+        this.velocity.x += accelerationX;
+        this.velocity.y += accelerationY;
+
+        const speed = Math.sqrt(
+          this.velocity.x ** 2 + this.velocity.y ** 2
+        );
+        if (speed > maxSpeed) {
+          this.velocity.x = (this.velocity.x / speed) * maxSpeed;
+          this.velocity.y = (this.velocity.y / speed) * maxSpeed;
+        } else if (speed < minSpeed) {
+          this.velocity.x = (this.velocity.x / speed) * minSpeed;
+          this.velocity.y = (this.velocity.y / speed) * minSpeed;
+        }
+
+        this.position.x += this.velocity.x;
+        this.position.y += this.velocity.y;
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.position.x, this.position.y, boidSize, 0, Math.PI * 2);
+        ctx.fillStyle = 'blue';
+        ctx.fill();
+      }
+    }
+
+    class Pred3{
+      constructor(x, y, velocityX, velocityY) {
+        this.position = { x, y };
+        this.velocity = { x: velocityX, y: velocityY };
+      }
+
+      update(pred,boids) {
+        let dx_min;
+        let dy_min;
+        let minDistance = 1000;
+        for (let other of boids) {
+          const dx = other.position.x - this.position.x;
+          const dy = other.position.y - this.position.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          if(distance < minDistance){
+            dx_min = dx;
+            dy_min = dy;
+            minDistance = distance;
+          }
+        }
+        
+        let accelerationX =
+          dx_min;
+
+        let accelerationY =
+          dy_min;
+
+        const accelerationMagnitude = Math.sqrt(
+          accelerationX ** 2 + accelerationY ** 2
+        );
+        if (accelerationMagnitude > predMaxAccel) {
+          accelerationX = (accelerationX / accelerationMagnitude) * predMaxAccel;
+          accelerationY = (accelerationY / accelerationMagnitude) * predMaxAccel;
+        }
+
+        this.velocity.x += accelerationX;
+        this.velocity.y += accelerationY;
+
+        const speed = Math.sqrt(
+          this.velocity.x ** 2 + this.velocity.y ** 2
+        );
+        if (speed > predMaxSpeed) {
+          this.velocity.x = (this.velocity.x / speed) * predMaxSpeed;
+          this.velocity.y = (this.velocity.y / speed) * predMaxSpeed;
+        } else if (speed < predMinSpeed) {
+          this.velocity.x = (this.velocity.x / speed) * predMinSpeed;
+          this.velocity.y = (this.velocity.y / speed) * predMinSpeed;
+        }
+
+        this.position.x += this.velocity.x;
+        this.position.y += this.velocity.y;
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.position.x, this.position.y, predSize, 0, Math.PI * 2);
+        ctx.fillStyle = 'red';
+        ctx.fill();
+      }
+    }
+
+    const boids = [];
+    for (let i = 0; i < boidCount; i++) {
+      const x = (Math.random()) * canvas.width;
+      const y = (Math.random()) * canvas.height;
+      const velocityX = Math.random() - 0.5;
+      const velocityY = Math.random() - 0.5;
+      
+      
+      const alignmentRadius = alignmentRadius_in + (Math.random()-0.5)*sdAlignmentRadius;
+      const separationRadius = separationRadius_in + (Math.random()-0.5)*sdSeparationRadius;
+      const centerRadius = centerRadius_in + (Math.random()-0.5)*sdCenterRadius;
+      const predatorAvoidanceRadius = predatorAvoidanceRadius_in + (Math.random()-0.5)*sdPredatorAvoidanceRadius;
+
+      const alignmentFactor = alignmentFactor_in + (Math.random()-0.5)*sdAlignmentFactor;
+      const cohesionFactor = cohesionFactor_in + (Math.random()-0.5)*sdCohesionFactor;
+      const centerAttraction = centerAttraction_in +(Math.random()-0.5)*sdCenterAttraction;
+      const separationFactor = separationFactor_in +(Math.random()-0.5)*sdSeparationFactor;
+      const predatorAvoidanceFactor = predatorAvoidanceFactor_in+(Math.random()-0.5)*sdPredatorAvoidanceFactor;
+      boids.push(new Boid3(x, y, velocityX, velocityY,
+      alignmentRadius,
+      separationRadius,
+      centerRadius,
+      predatorAvoidanceRadius,
+      alignmentFactor,
+      cohesionFactor,
+      centerAttraction,
+      separationFactor,
+      predatorAvoidanceFactor
+      ));
+    }
+    const preds = [];
+    for (let i = 0; i < predCount; i++) {
+      preds.push(new Pred3(Math.round(Math.random()) * canvas.width + Math.random()*50,Math.round(Math.random())* canvas.height + Math.random()*50,Math.random()*2,Math.random()*2));
+    }
+
+
+
+    function create_new_boid(boids){
+      const totalBoids = boids.length;
+      let avgAlignmentRadius = 0;
+      let avgSeparationRadius = 0;
+      let avgCenterRadius = 0;
+      let avgPredatorAvoidanceRadius = 0;
+      let avgAlignmentFactor = 0;
+      let avgCohesionFactor = 0;
+      let avgCenterAttraction = 0;
+      let avgSeparationFactor = 0;
+      let avgPredatorAvoidanceFactor = 0;
+      for (let boid of boids) {
+        avgAlignmentRadius += boid.alignmentRadius;
+        avgSeparationRadius += boid.separationRadius;
+        avgCenterRadius += boid.centerRadius;
+        avgPredatorAvoidanceRadius += boid.predatorAvoidanceRadius;
+        avgAlignmentFactor += boid.alignmentFactor;
+        avgCohesionFactor += boid.cohesionFactor;
+        avgCenterAttraction += boid.centerAttraction;
+        avgSeparationFactor += boid.separationFactor;
+        avgPredatorAvoidanceFactor += boid.predatorAvoidanceFactor;
+}
+
+avgAlignmentRadius = avgAlignmentRadius / totalBoids;
+avgSeparationRadius = avgSeparationRadius / totalBoids;
+avgCenterRadius = avgCenterRadius / totalBoids;
+avgPredatorAvoidanceRadius = avgPredatorAvoidanceRadius / totalBoids;
+
+
+avgAlignmentFactor = avgAlignmentFactor / totalBoids;
+avgCohesionFactor = avgCohesionFactor / totalBoids;
+avgCenterAttraction = avgCenterAttraction / totalBoids;
+avgSeparationFactor = avgSeparationFactor / totalBoids;
+avgPredatorAvoidanceFactor = avgPredatorAvoidanceFactor / totalBoids;
+
+
+
+      const x = (10 + 2*sepKillRadius )*(Math.random()-0.5) + canvas.width* init_x;
+      const y = (10 + 2*sepKillRadius )*(Math.random()-0.5) + canvas.height * (1-init_y);
+      const velocityX = init_vx + Math.random() - 0.5;
+      const velocityY = -init_vy + Math.random();
+
+
+      const alignmentRadius = avgAlignmentRadius + (Math.random()-0.5)*sdAlignmentRadius;
+      const separationRadius = avgSeparationRadius + (Math.random()-0.5)*sdSeparationRadius;
+      const centerRadius = avgCenterRadius + (Math.random()-0.5)*sdCenterRadius;
+      const predatorAvoidanceRadius = avgPredatorAvoidanceRadius + (Math.random()-0.5)*sdPredatorAvoidanceRadius;
+
+      const alignmentFactor = avgAlignmentFactor + (Math.random()-0.5)*sdAlignmentFactor;
+      const cohesionFactor = avgCohesionFactor + (Math.random()-0.5)*sdCohesionFactor;
+      const centerAttraction = avgCenterAttraction+(Math.random()-0.5)*sdCenterAttraction;
+      const separationFactor = avgSeparationFactor+(Math.random()-0.5)*sdSeparationFactor;
+      const predatorAvoidanceFactor = avgPredatorAvoidanceFactor+(Math.random()-0.5)*sdPredatorAvoidanceFactor;
+      boids.push(new Boid3(x, y, velocityX, velocityY,
+      alignmentRadius,
+      separationRadius,
+      centerRadius,
+      predatorAvoidanceRadius,
+      alignmentFactor,
+      cohesionFactor,
+      centerAttraction,
+      separationFactor,
+      predatorAvoidanceFactor
+      ));
+    }
+
+    function create_new_pred(preds){
+      preds.push(new Pred3(Math.round(Math.random()) * canvas.width + Math.random()*50,Math.round(Math.random())* canvas.height + Math.random()*50,Math.random()*2,Math.random()*2));
+    }
+
+    function kill_pred(boids,preds,predKillRadius){
+      for (let i = boids.length - 1; i >= 0; i--) {
+        for(let j = preds.length -1; j>=0;j--)
+      if (Math.sqrt((boids[i].position.x - preds[j].position.x)**2 + (boids[i].position.y - preds[j].position.y)**2) <= predKillRadius) {
+      boids.splice(i, 1); // Remove the boid at index i
+      preds.splice(j,1);
+      create_new_boid(boids);
+      create_new_pred(preds);
+      killCounter += 1;
+      killCounterPred += 1;
+      break
+      }
+    }
+    }
+    function kill_sep(boids, sepKillRadius) {
+for (let i = boids.length - 1; i >= 0; i--) { // Iterate backward
+  for (let j = i - 1; j >= 0; j--) { // Compare only pairs that haven’t been checked yet
+    const boid1 = boids[i];
+    const boid2 = boids[j];
+    const distance = Math.sqrt(
+      (boid1.position.x - boid2.position.x) ** 2 +
+      (boid1.position.y - boid2.position.y) ** 2
+    );
+    const velo_diff = Math.sqrt(
+      (boid1.velocity.x - boid2.velocity.x) ** 2 +
+      (boid1.velocity.y - boid2.velocity.y) ** 2
+    );
+    if (distance < sepKillRadius && velo_diff>=maxSpeed*collision_factor) {//only kill if sufficiently different velo vectors!
+      // Remove boid1 and boid2
+      boids.splice(i, 1); // Remove the boid with the higher index first
+      boids.splice(j, 1); // Remove the other boid
+      create_new_boid(boids); // Replace with new boids if needed
+      create_new_boid(boids);
+      killCounter += 2;
+      killCounterCollision += 2;
+      break; // Exit inner loop as `i` is now invalid
+    }
+  }
+}
+}
+          
+    function kill_center(boids,centerKillRadius){
+      const center = { x: canvas.width / 2, y: canvas.height / 2 };
+        
+      for (let i = boids.length - 1; i >= 0; i--) {
+
+      if (boids[i].position.x<=0){
+      boids.splice(i, 1); // Remove the boid at index i
+      create_new_boid(boids)
+      killCounter += 1;
+      killCounterDistance += 1;
+    }
+    if (boids[i].position.y<=0){
+      boids.splice(i, 1); // Remove the boid at index i
+      create_new_boid(boids)
+      killCounter += 1;
+      killCounterDistance += 1;
+    }
+    if (boids[i].position.x>=canvas.width){
+      boids.splice(i, 1); // Remove the boid at index i
+      create_new_boid(boids)
+      killCounter += 1;
+      killCounterDistance += 1;
+    }
+    if (boids[i].position.y>=canvas.height){
+      boids.splice(i, 1); // Remove the boid at index i
+      create_new_boid(boids)
+      killCounter += 1;
+      killCounterDistance += 1;
+    }
+  }
+}
+
+    let isAnimating = false;
+    let animationFrame;
+
+
+let killCounterLast = 0;
+let killCounterPredLast = 0;
+let killCounterCollisionLast = 0;
+let killCounterDistanceLast = 0;
+function recordSummaryStatistics(boids, step) {
+const totalBoids = boids.length;
+      let avgAlignmentRadius = 0;
+      let avgSeparationRadius = 0;
+      let avgCenterRadius = 0;
+      let avgPredatorAvoidanceRadius = 0;
+      let avgAlignmentFactor = 0;
+      let avgCohesionFactor = 0;
+      let avgCenterAttraction = 0;
+      let avgSeparationFactor = 0;
+      let avgPredatorAvoidanceFactor = 0;
+      for (let boid of boids) {
+        avgAlignmentRadius += boid.alignmentRadius;
+        avgSeparationRadius += boid.separationRadius;
+        avgCenterRadius += boid.centerRadius;
+        avgPredatorAvoidanceRadius += boid.predatorAvoidanceRadius;
+        avgAlignmentFactor += boid.alignmentFactor;
+        avgCohesionFactor += boid.cohesionFactor;
+        avgCenterAttraction += boid.centerAttraction;
+        avgSeparationFactor += boid.separationFactor;
+        avgPredatorAvoidanceFactor += boid.predatorAvoidanceFactor;
+}
+
+avgAlignmentRadius = round(avgAlignmentRadius / totalBoids,4);
+avgCenterRadius = round(avgCenterRadius / totalBoids,4);
+avgPredatorAvoidanceRadius = round(avgPredatorAvoidanceRadius / totalBoids,4);
+
+
+avgAlignmentFactor = round(avgAlignmentFactor / totalBoids,4);
+avgCohesionFactor = round(avgCohesionFactor / totalBoids,4);
+avgCenterAttraction = round(avgCenterAttraction / totalBoids,4);
+avgPredatorAvoidanceFactor = round(avgPredatorAvoidanceFactor / totalBoids,4);
+
+summaryData.alignmentFactor.push(avgAlignmentFactor);
+summaryData.cohesionFactor.push(avgCohesionFactor);
+summaryData.centerAttraction.push(avgCenterAttraction);
+summaryData.predatorAvoidanceFactor.push(avgPredatorAvoidanceFactor);
+summaryData.alignmentRadius.push(avgAlignmentRadius);
+summaryData.centerRadius.push(avgCenterRadius);
+summaryData.predatorAvoidanceRadius.push(avgPredatorAvoidanceRadius);
+summaryData.killCounter.push(killCounter - killCounterLast);
+summaryData.killCounterPred.push(killCounterPred - killCounterPredLast);
+summaryData.killCounterCollision.push(killCounterCollision - killCounterCollisionLast);
+summaryData.killCounterDistance.push(killCounterDistance - killCounterDistanceLast);
+
+killCounterLast = killCounter;
+killCounterPredLast = killCounterPred;
+killCounterCollisionLast = killCounterCollision;
+killCounterDistanceLast = killCounterDistance;
+
+
+updateGraph(step)
+
+}
+
+function updateGraph(step) {
+const graphCanvas = document.getElementById('summaryGraph');
+const graphCtx = graphCanvas.getContext('2d');
+
+graphCtx.clearRect(0, 0, graphCanvas.width, graphCanvas.height);
+
+const timeSteps = Array.from({ length: summaryData.alignmentFactor.length }, (_, i) => i * 200);
+
+const drawLine = (data, color) => {
+  dataMax = Math.max(...data);
+  dataMin = Math.min(...data);
+  dataPoints = summaryData.alignmentFactor.length;
+  graphCtx.beginPath();
+  graphCtx.strokeStyle = color;
+  data.forEach((value, index) => {
+    const x = (index / dataPoints) * graphCanvas.width;
+    const y = 490 - (((value - dataMin) / (dataMax - dataMin)) * 480); // Scale data
+
+    //const y = 100;
+    if (index === 0) {
+      graphCtx.moveTo(x, y);
+    } else {
+      graphCtx.lineTo(x, y);
+    }
+  });
+  graphCtx.stroke();
+};
+
+if (document.getElementById('showAlignmentFactor').checked) {
+  drawLine(summaryData.alignmentFactor, 'blue');
+}
+if (document.getElementById('showCohesionFactor').checked) {
+  drawLine(summaryData.cohesionFactor, 'green');
+}
+if (document.getElementById('showCenterAttraction').checked) {
+  drawLine(summaryData.centerAttraction, 'purple');
+}
+if (document.getElementById('showPredatorAvoidanceFactor').checked) {
+  drawLine(summaryData.predatorAvoidanceFactor, 'red');
+}
+if (document.getElementById('showAlignmentRadius').checked) {
+  drawLine(summaryData.alignmentRadius, 'orange');
+}
+if (document.getElementById('showCenterRadius').checked) {
+  drawLine(summaryData.centerRadius, 'darkgoldenrod');
+}
+if (document.getElementById('showPredatorAvoidanceRadius').checked) {
+  drawLine(summaryData.predatorAvoidanceRadius, 'coral');
+}
+if (document.getElementById('showKillCounter').checked) {
+  drawLine(summaryData.killCounter, 'darkred');
+}
+if (document.getElementById('showKillCounterPred').checked) {
+  drawLine(summaryData.killCounterPred, 'pink');
+}
+if (document.getElementById('showKillCounterCollision').checked) {
+  drawLine(summaryData.killCounterCollision, 'yellow');
+}
+if (document.getElementById('showKillCounterDistance').checked) {
+  drawLine(summaryData.killCounterDistance, 'lightgreen');
+}
+
+}
+
+
+function round(num, decimalPlaces = 0) {
+  var p = Math.pow(10, decimalPlaces);
+  var n = (num * p) * (1 + Number.EPSILON);
+  return Math.round(n) / p;
+}
+    
+
+
+
+
+function drawBoidStatistics(ctx, boids) {
+
+// Calculate averages
+
+
+const totalBoids = boids.length;
+      let avgAlignmentRadius = 0;
+      let avgSeparationRadius = 0;
+      let avgCenterRadius = 0;
+      let avgPredatorAvoidanceRadius = 0;
+      let avgAlignmentFactor = 0;
+      let avgCohesionFactor = 0;
+      let avgCenterAttraction = 0;
+      let avgSeparationFactor = 0;
+      let avgPredatorAvoidanceFactor = 0;
+      for (let boid of boids) {
+        avgAlignmentRadius += boid.alignmentRadius;
+        avgSeparationRadius += boid.separationRadius;
+        avgCenterRadius += boid.centerRadius;
+        avgPredatorAvoidanceRadius += boid.predatorAvoidanceRadius;
+        avgAlignmentFactor += boid.alignmentFactor;
+        avgCohesionFactor += boid.cohesionFactor;
+        avgCenterAttraction += boid.centerAttraction;
+        avgSeparationFactor += boid.separationFactor;
+        avgPredatorAvoidanceFactor += boid.predatorAvoidanceFactor;
+}
+
+avgAlignmentRadius = round(avgAlignmentRadius / totalBoids,4);
+avgSeparationRadius = round(avgSeparationRadius / totalBoids,4);
+avgCenterRadius = round(avgCenterRadius / totalBoids,4);
+avgPredatorAvoidanceRadius = round(avgPredatorAvoidanceRadius / totalBoids,4);
+
+
+avgAlignmentFactor = round(avgAlignmentFactor / totalBoids,4);
+avgCohesionFactor = round(avgCohesionFactor / totalBoids,4);
+avgCenterAttraction = round(avgCenterAttraction / totalBoids,4);
+avgSeparationFactor = round(avgSeparationFactor / totalBoids,4);
+avgPredatorAvoidanceFactor = round(avgPredatorAvoidanceFactor / totalBoids,4);
+
+// Draw text on canvas
+if(showStats==1){
+ctx.font = '16px Arial';
+ctx.fillStyle = 'black';
+ctx.fillText(`Avg alignmentFactor: (${avgAlignmentFactor})`, 10, 20); // Top-left corner
+ctx.fillText(`Avg cohesionFactor: (${avgCohesionFactor})`, 10, 40);
+ctx.fillText(`Avg centerAttraction: (${avgCenterAttraction})`, 10, 60);
+ctx.fillText(`Avg separationFactor: (${avgSeparationFactor})`, 10, 80);
+ctx.fillText(`Avg predatorAvoidanceFactor: (${avgPredatorAvoidanceFactor})`, 10, 100);
+ctx.fillText(`Avg alignmentRadius: (${avgAlignmentRadius})`, 10, 120); // Top-left corner
+ctx.fillText(`Avg centerRadius: (${avgCenterRadius})`, 10, 140);
+ctx.fillText(`Avg separationRadius: (${avgSeparationRadius})`, 10, 160);
+ctx.fillText(`Avg predatorAvoidanceRadius: (${avgPredatorAvoidanceRadius})`, 10, 180);
+ctx.fillText(`Total Kill Counter: (${killCounter})`, 10, 200);
+ctx.fillText(`Predator Kill Counter: (${killCounterPred})`, 10, 220);
+ctx.fillText(`Collision Kill Counter: (${killCounterCollision})`, 10, 240);
+ctx.fillText(`Distance Kill Counter: (${killCounterDistance})`, 10, 260);
+ctx.fillText(`Total boids: (${boids.length})`, 10, 280);
+}
+}
+
+let killCounter = 0;
+let killCounterPred = 0;
+let killCounterCollision = 0;
+let killCounterDistance = 0;
+
+    let step = 0;
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let boid of boids) {
+        boid.update(boids,preds);
+        kill_pred(boids,preds,predKillRadius);
+        kill_sep(boids,sepKillRadius);
+        kill_center(boids,centerKillRadius);
+        boid.draw();
+      }
+      for (let pred of preds) {
+      pred.update(pred,boids);
+      pred.draw();
+      }
+
+      for (let i = boids.length - 1; i >= 0; i--) {
+        if (isNaN(boids[i].position.x)){
+          boids.splice(i, 1);}
+        }
+        for (let i = preds.length - 1; i >= 0; i--) {
+        if (isNaN(preds[i].position.x)){
+          preds.splice(i, 1);}
+        }
+      if(boids.length < boidCount){
+        create_new_boid(boids);
+      }
+      if(preds.length < predCount){
+        create_new_pred(preds);
+      }
+      drawBoidStatistics(ctx, boids);
+      if(showStats==1){
+      if(step % 200 === 0){
+        recordSummaryStatistics(boids, step);
+      }
+  }
+      step++;
+      //animationFrame = requestAnimationFrame(animate);
+    }
+
+    // Function to start the simulation
+function startSimulation() {
+// Clear any existing interval to avoid duplicates
+if (animationInterval) clearInterval(animationInterval);
+
+// Set a new interval based on the slider value
+const intervalTime = 200 / currentSpeed; // Adjust interval (e.g., 2000ms at speed 50)
+animationInterval = setInterval(animate, intervalTime);
+}
+
+document.getElementById('simulationSpeed').addEventListener('input', (event) => {
+currentSpeed = parseInt(event.target.value);
+startSimulation(); // Restart simulation with new speed
+});
+
+startSimulation();
+
+
+      window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      });
+}
+
+
+
+  const predEvolConfig1 = {
+    boidCount: 80,
+    boidSize: 3,
+    maxSpeed: 5,
+    minSpeed: 3,
+    maxAcceleration: 0.5,
+    separationRadius_in: 10,
+    alignmentRadius_in: 189,
+    centerAttraction_in: 0.06,
+    centerRadius_in: 210,
+    predatorAvoidanceRadius_in: 100,
+    separationFactor_in: 10,
+    alignmentFactor_in: -0.048,
+    cohesionFactor_in: 0.13,
+    predatorAvoidanceFactor_in: 0.92,
+      predMaxSpeed: 6,
+      predMinSpeed: 0,
+      predMaxAccel: 6.5,
+      predSize: 5,
+      sepKillRadius: 1.,
+      centerKillRadius: 1000,
+      predKillRadius: 5,
+      sdAlignmentFactor: 0.0,
+      sdCohesionFactor: 0.0,
+      sdCenterAttraction: 0.0,
+      sdSeparationFactor: 0.,
+      sdPredatorAvoidanceFactor: .0,
+      sdAlignmentRadius: 0,
+      sdSeparationRadius: 0.,
+      sdCenterRadius: 0,
+      sdPredatorAvoidanceRadius:0.,
+      showStats: 1,
+      collision_factor: 1.5,
+      init_x: 300,
+      init_y: 200,
+      init_vx:-2,
+      init_vy:2,
+      pred_count: 4
+  };
+
+
+  //initializeFlockingSimulationPredatorEvolve('predEvolSimulation1', predEvolConfig1);
+
+</script>
+
+
+
+
+<script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>  <script src="assets/smoothscroll/smooth-scroll.js"></script>  <script src="assets/ytplayer/index.js"></script>  <script src="assets/dropdown/js/navbar-dropdown.js"></script>  <script src="assets/theme/js/script.js"></script>  
+  
+  
+</body>
+</html>

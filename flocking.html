@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html  >
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-73C4QJ3N07"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-73C4QJ3N07');
-</script>
   <!-- Site made with Mobirise Website Builder v5.9.18, https://mobirise.com -->
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -28,7 +19,7 @@
   <link rel="stylesheet" href="assets/theme/css/style.css">
   <link rel="preload" href="https://fonts.googleapis.com/css?family=Inter+Tight:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter+Tight:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap"></noscript>
-  <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css?v=YGMDGY"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css?v=YGMDGY" type="text/css">
+  <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css?v=u7O6YF"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css?v=u7O6YF" type="text/css">
 
   
   
@@ -43,7 +34,7 @@
 		<div class="container">
 			<div class="navbar-brand">
 				
-				<span class="navbar-caption-wrap"><a class="navbar-caption text-black text-primary display-4">Cameron Grove</a></span>
+				<span class="navbar-caption-wrap"><a class="navbar-caption text-black text-primary display-4" href="index.html">Cameron Grove</a></span>
 			</div>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbarSupportedContent" data-bs-target="#navbarSupportedContent" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 				<div class="hamburger">
@@ -79,11 +70,11 @@
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-12 col-md-12 col-lg-6 image-wrapper">
-				<img class="w-100" src="assets/images/flocking.png" alt="Mobirise Website Builder">
+				<img class="w-100" src="assets/images/flocking.png" alt="">
 			</div>
 			<div class="col-12 col-md-12 col-lg">
 				<div class="text-wrapper align-left">
-					<h1 class="mbr-section-title mbr-fonts-style mb-4 display-2"><strong>An evolutionary approach to simulate flocking behaviour</strong></h1>
+					<h1 class="mbr-section-title mbr-fonts-style mb-4 display-2"><strong>An evolutionary approach for flocking behaviour</strong></h1>
 					<p class="mbr-text mbr-fonts-style mb-4 display-7"></p>
 					
 				</div>
@@ -92,377 +83,1828 @@
 	</div>
 </section>
 
-<canvas id="boidsCanvas"  style="border: 2px solid black;"></canvas>
+<section data-bs-version="5.1" class="content4 cid-uxV3PF52Z1" id="list02-l">
+    
 
+    
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="title col-md-12 mb-5">
+                    
+                    
+                </div>
+                <div class="item features-without-image col-12">
+                    <div class="item-wrapper">
+                        <div class="card-box align-left">
+                            <h5 class="card-title mbr-fonts-style mb-3 display-5">
+                                <strong>Introduction</strong></h5>
+                            <p class="card-text mbr-fonts-style mb-5 display-7">
+                                I've always been interested in the emergent behaviour that can come from systems with simple rules. Some of the first projects I undertook when learning to code involved simulating the evolution of chaotic systems of equations.<br><br>The evolution of biologial systems is another area where emergence, complexity, and unexpected behaviour come into play. We do not need to directly optimize behaviour when using an evolutionary approach, we can see let the algorithm find the behaviour that leads to the best fitness and survival. Setting up an environment where survival leads to novel behaviour can be a challenge but I find it compelling when it works. On long train journeys I would sometimes create simulations of little blobs that would move around an area eating, fighting, and reproducing. A blob's "stats" were determined by an array of genes and through the generations you could see how the fitter creatures were allocating their genes more appropriately.<br></p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<section data-bs-version="5.1" class="content4 cid-uy1d72KwIF" id="list02-o">
+    
+
+    
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="title col-md-12 mb-5">
+                    
+                    
+                </div>
+                <div class="item features-without-image col-12">
+                    <div class="item-wrapper">
+                        <div class="card-box align-left">
+                            <h5 class="card-title mbr-fonts-style mb-3 display-5">
+                                <strong>Boids</strong></h5>
+                            <p class="card-text mbr-fonts-style mb-5 display-7">
+                                The boids algorithm was deveolped by Craig Reynolds in 1986. The basic idea is to control the movement of simulated creatures such that they produce coordinated motion similar to flocks of birds or schools of fish. There are three main steering behaviours that govern boid motion: separation, alignment, and cohesion. To see the effect of these behaviours, let's set up some proto-boids below that move around a central point. My boids have a minimum speed that is half of their maximum speed, and their acceleration is limited to a small value so they can't turn on a dime but instead they swoop around in a similar manner to real birds.<br></p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<canvas id="simulation1"></canvas>
+
+
+<section data-bs-version="5.1" class="content4 cid-uyR7oOf4WD" id="list02-q">
+    
+
+    
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="title col-md-12 mb-5">
+                    
+                    
+                </div>
+                <div class="item features-without-image col-12">
+                    <div class="item-wrapper">
+                        <div class="card-box align-left">
+                            
+                            <p class="card-text mbr-fonts-style mb-5 display-7">Let's turn on <em>cohesion</em>. This attracts boids towards others within a detection radius. We can see that the boids form local clusters that attract and absorb loose boids.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<canvas id="simulation2"></canvas>
+
+
+<section data-bs-version="5.1" class="content4 cid-uyR8671fT6" id="list02-r">
+    
+
+    
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="title col-md-12 mb-5">
+                    
+                    
+                </div>
+                <div class="item features-without-image col-12">
+                    <div class="item-wrapper">
+                        <div class="card-box align-left">
+                            
+                            <p class="card-text mbr-fonts-style mb-5 display-7">After cohesion, we can add <em>alignment. </em>This behaviour means that boids try to match the velocity vectors of nearby boids. With alignment the boids form sets of rings that traverse across the page.<br></p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<canvas id="simulation3"></canvas>
+
+
+<section data-bs-version="5.1" class="content4 cid-uyR8VtY5qa" id="list02-s">
+    
+
+    
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="title col-md-12 mb-5">
+                    
+                    
+                </div>
+                <div class="item features-without-image col-12">
+                    <div class="item-wrapper">
+                        <div class="card-box align-left">
+                            
+                            <p class="card-text mbr-fonts-style mb-5 display-7">Finally, we can add separation. This acts as a repulsive force for boids that get too close together and prevent them from significantly overlapping in an unphysical way. These three rules work together to produce a nice set of boids gently flocking around the central point.<br></p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<canvas id="simulation4"></canvas>
+
+
+
+<section data-bs-version="5.1" class="content4 cid-uyRuhAW1cV" id="list02-t">
+    
+
+    
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="title col-md-12 mb-5">
+                    
+                    
+                </div>
+                <div class="item features-without-image col-12">
+                    <div class="item-wrapper">
+                        <div class="card-box align-left">
+                            <h5 class="card-title mbr-fonts-style mb-3 display-5">
+                                <strong>Why flock?</strong></h5>
+                            <p class="card-text mbr-fonts-style mb-5 display-7">
+                                These rules can produce motion that mimics herding and flocking, but they do not tell us why this exists in nature. Concentrating organisms in one location is likely to introduce more competition for resources and one might naively expect it to be a suboptimal behaviour. The answer is that flocking is a response to predation. Being in such large group makes in unlikely that an individual bird will be the victim of a bird-of-prey when compared to being alone.<br><br>We can introduce a predator into our boid simulation. Here the red dot represents a boid-of-prey, chasing boids around and scattering them. I aim to show that flocking behaviour can evolve in a simple system such as this as a response to predation, but before we get to that there are a few more steps.<br></p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<canvas id="predSimulation1"></canvas>
+
+
+<section data-bs-version="5.1" class="content4 cid-uyRzOvUdf1" id="list02-u">
+    
+
+    
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="title col-md-12 mb-5">
+                    
+                    
+                </div>
+                <div class="item features-without-image col-12">
+                    <div class="item-wrapper">
+                        <div class="card-box align-left">
+                            <h5 class="card-title mbr-fonts-style mb-3 display-5">
+                                <strong>Boids Evolved</strong></h5>
+                            <p class="card-text mbr-fonts-style mb-5 display-7">There is no need to have every boid following the same set of rules. Each boid can react to its environment and its neighbours in its own way. We can use this to see if flocking behaviour is appropriate in various scenarios and how the evolved flocking dynamics vary with different selection effects. We can give each boid its own weights for cohesion, alignment, and separation, along with their respective active distances and see which flocking behaviour leads to boid survival.<br><br>To make this interesting we can add several types of danger for the boids, such that no naive strategy ends up dominating. Firstly, the predators themselves can kill boids. Successfully evading or avoiding interactions with predators will be a necessary feature of appropriate flocking behaviour. The predator will chase the nearest boid and can reach a higher top speed so there's no outmanoeuvering the predator. Secondly, leaving the observable window on the monitor screen is punishable by death. If a boid could just run off to infinity then it would not produce very interesting behaviour. Finally, we can also add danger from collisions between boids, this will stop the boids from collecting in a point mass and prevent the flocking behaviour from leading to many overlaps.<br><br>I have provided a boid evolution sandbox in a separate tab that you can find <a href="https://pitchingbot.com/flockingsandbox.html" target="_blank"><b><u>here</u></b></a>. From this you can set up your own boid evolution simulation and let it run in your browser. We can get interesting behaviour depending on the rules that we set up. Some examples are below.<br><br>We can start with a relatively lenient collision danger, only high speed head-on collisions will kill a pair of boids. If we fix the separation force and distance, and only let the cohesion, alignment, central attraction, and predator avoidance behaviour vary then the boids end up settling into a pattern.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<canvas id="predEvolSimulation1"></canvas>
+
+
+<section data-bs-version="5.1" class="content4 cid-uyWt8U5VFd" id="list02-v">
+    
+
+    
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="title col-md-12 mb-5">
+                    
+                    
+                </div>
+                <div class="item features-without-image col-12">
+                    <div class="item-wrapper">
+                        <div class="card-box align-left">
+                            
+                            <p class="card-text mbr-fonts-style mb-5 display-7">A whirling maelstrom of boids with extremely strong cohesion pulling them together in the same direction, similar to a galactic disc. Here the boids don't care about actively avoiding predators that much, staying within the boid cloud provides enough protection by itself and the angle of rotation prevents head-on collisions. Actively avoiding predators too strongly could take a boid away from the flock and increase the risk of head-on collisions.<br></p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<section data-bs-version="5.1" class="content4 cid-uyX5EdPh7m" id="list02-w">
+    
+
+    
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="title col-md-12 mb-5">
+                    
+                    
+                </div>
+                <div class="item features-without-image col-12">
+                    <div class="item-wrapper">
+                        <div class="card-box align-left">
+                            
+                            <p class="card-text mbr-fonts-style mb-5 display-7">Turning collision danger off means that the successful boids form a tight pod that moves around avoiding predators.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<canvas id="predEvolSimulation2"></canvas>
+
+
+<section data-bs-version="5.1" class="content4 cid-uyXvo56Akp" id="list02-x">
+    
+
+    
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="title col-md-12 mb-5">
+                    
+                    
+                </div>
+                <div class="item features-without-image col-12">
+                    <div class="item-wrapper">
+                        <div class="card-box align-left">
+                            
+                            <p class="card-text mbr-fonts-style mb-5 display-7">Increase the danger from collisions (by including side-on and lower speed collisions) means that alignment becomes more important to survival. The boids below have high alignment and separation which avoids collisisons, but they still try to move as a flock in order to avoid predators.<br></p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<canvas id="predEvolSimulation3"></canvas>
+
+
+<section data-bs-version="5.1" class="content4 cid-uyXCStZTuB" id="list02-z">
+    
+
+    
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="title col-md-12 mb-5">
+                    
+                    
+                </div>
+                <div class="item features-without-image col-12">
+                    <div class="item-wrapper">
+                        <div class="card-box align-left">
+                            
+                            <p class="card-text mbr-fonts-style mb-5 display-7">Allowing the boids to accelerate much faster and removing the minimum speed produces swarm-like effects as the separation force is able to avoid collisions more effectively. However there is no longer large-scale cohesion between the boids as the selection pressures have siginificantly reduced the alignment and cohesion distances.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<canvas id="predEvolSimulation4"></canvas>
+
+
+<section data-bs-version="5.1" class="content4 cid-uyXw8LL6ni" id="list02-y">
+    
+
+    
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="title col-md-12 mb-5">
+                    
+                    
+                </div>
+                <div class="item features-without-image col-12">
+                    <div class="item-wrapper">
+                        <div class="card-box align-left">
+                            <h5 class="card-title mbr-fonts-style mb-3 display-5">
+                                <strong>Conclusions</strong></h5>
+                            <p class="card-text mbr-fonts-style mb-5 display-7">There aren't many grand conclusions that we can draw from this experiment beyond "flocking works to avoid predators". It would be interesting to explore the full range of strategies that develop across a large variety of experimental parameters to build up a "phase-space" of flocking strategies that respond to different pressures.<br><br>There is much in the literature about the boids algorithm, but relatively little that I could find about using an evolutionary approach to explain flocking behaviour. <a href="https://www.sciencedirect.com/science/article/abs/pii/S1568494610000232" class="text-primary" target="_blank"><strong><u>One paper</u></strong></a> investigated whether flocking would form naturally in a plant/herbivore/predator simulation with movement controlled by a neural net, however they had to artificially reward being near to other herbivores in order to induce flocking. The project most similar to mine is <a href="http://iotic.com/flock2/" class="text-primary" target="_blank"><strong><u>this one</u></strong></a>&nbsp;(<a href="http://iotic.com/flock2/AS08_DSayers_Project.pdf" class="text-primary" target="_blank"><strong><u>pdf</u></strong></a>) by Dan Sayers. It explored evolved predator and prey motion dynamics including flocking and how robust the flocking was to various changes in sensory information and constraints on both sets of creatures.<br><br>In the process of reviewing the literature for this project I also found the following illustration for a conference proceedings which was too interesting not to share.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<section data-bs-version="5.1" class="image01 cid-uz2nmSjOch" id="image01-10">
+  
+
+  
+  
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-4">
+        <div class="image-wrapper mb-4">
+          <img class="w-100" src="assets/images/animals-dancing.jpg" alt="Simulating adaptive behavior... one fleckerl at a time.">
+        </div>
+        
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-bs-version="5.1" class="content4 cid-uz2wz4aq0v" id="list02-11">
+    
+
+    
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="title col-md-12 mb-5">
+                    
+                    
+                </div>
+                <div class="item features-without-image col-12">
+                    <div class="item-wrapper">
+                        <div class="card-box align-left">
+                            
+                            <p class="card-text mbr-fonts-style mb-5 display-7">In any case, hopefully my <a href="https://pitchingbot.com/flockingsandbox.html" target="_blank"><b><u>sandbox</u></b></a> proves to be of interest to someone else interested in the same problem, feel free to get in touch if you make anything cool with it!<br></p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+</section><script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>  <script src="assets/smoothscroll/smooth-scroll.js"></script>  <script src="assets/ytplayer/index.js"></script>  <script src="assets/dropdown/js/navbar-dropdown.js"></script>  <script src="assets/theme/js/script.js"></script>  
+  
 <script>
-    const canvas = document.getElementById('boidsCanvas');
+  function initializeFlockingSimulation(canvasId, config) {
+    const canvas = document.getElementById(canvasId);
     const ctx = canvas.getContext('2d');
-    const pauseButton = document.getElementById('pauseButton');
 
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    const BOID_COUNT = 40;
-    const BOID_SIZE = 5;
-    const MAX_SPEED = 4;
-    const MIN_SPEED = 2;
-    const MAX_ACCELERATION = 0.1;
-    const ALIGNMENT_RADIUS = 100;
-    const COHESION_RADIUS = 100;
-    const SEPARATION_RADIUS = 20;
-    const CENTER_ATTRACTION = 0.1;
-
-    const ALIGNMENT_FACTOR = 0.02;
-    const COHESION_FACTOR = 0.004;
-    const SEPARATION_FACTOR = 0.16;
-
-    class Boid {
-        constructor(x, y, velocityX, velocityY) {
-            this.position = { x, y };
-            this.velocity = { x: velocityX, y: velocityY };
-        }
-
-        update(boids) {
-            let alignment = { x: 0, y: 0 };
-            let cohesion = { x: 0, y: 0 };
-            let separation = { x: 0, y: 0 };
-            let total = 0;
-
-            for (let other of boids) {
-                const dx = other.position.x - this.position.x;
-                const dy = other.position.y - this.position.y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-
-                if (other !== this && distance < ALIGNMENT_RADIUS) {
-                    // Alignment: Match velocity with nearby boids
-                    alignment.x += other.velocity.x;
-                    alignment.y += other.velocity.y;
-
-                    // Cohesion: Move toward the center of nearby boids
-                    cohesion.x += other.position.x;
-                    cohesion.y += other.position.y;
-
-                    total++;
-                }
-
-                if (other !== this && distance < SEPARATION_RADIUS) {
-                    // Separation: Avoid crowding nearby boids
-                    separation.x -= dx / distance;
-                    separation.y -= dy / distance;
-                }
-            }
-
-            if (total > 0) {
-                // Average alignment
-                alignment.x /= total;
-                alignment.y /= total;
-
-                // Average cohesion
-                cohesion.x /= total;
-                cohesion.y /= total;
-                cohesion.x -= this.position.x;
-                cohesion.y -= this.position.y;
-            }
-
-            // Attraction to center
-            const center = { x: canvas.width / 2, y: canvas.height / 2 };
-            const toCenter = {
-                x: center.x - this.position.x,
-                y: center.y - this.position.y,
-            };
-
-            // Compute acceleration
-            let accelerationX = alignment.x * ALIGNMENT_FACTOR + cohesion.x * COHESION_FACTOR + separation.x * SEPARATION_FACTOR + Math.sign(toCenter.x) * CENTER_ATTRACTION;
-            let accelerationY = alignment.y * ALIGNMENT_FACTOR + cohesion.y * COHESION_FACTOR + separation.y * SEPARATION_FACTOR + Math.sign(toCenter.y) * CENTER_ATTRACTION;
-
-            // Limit acceleration
-            const accelerationMagnitude = Math.sqrt(accelerationX ** 2 + accelerationY ** 2);
-            if (accelerationMagnitude > MAX_ACCELERATION) {
-                accelerationX = (accelerationX / accelerationMagnitude) * MAX_ACCELERATION;
-                accelerationY = (accelerationY / accelerationMagnitude) * MAX_ACCELERATION;
-            }
-
-            // Adjust velocity
-            this.velocity.x += accelerationX;
-            this.velocity.y += accelerationY;
-
-            // Limit speed
-            const speed = Math.sqrt(this.velocity.x ** 2 + this.velocity.y ** 2);
-            if (speed > MAX_SPEED) {
-                this.velocity.x = (this.velocity.x / speed) * MAX_SPEED;
-                this.velocity.y = (this.velocity.y / speed) * MAX_SPEED;
-            } else if (speed < MIN_SPEED) {
-                this.velocity.x = (this.velocity.x / speed) * MIN_SPEED;
-                this.velocity.y = (this.velocity.y / speed) * MIN_SPEED;
-            }
-
-            // Update position
-            this.position.x += this.velocity.x;
-            this.position.y += this.velocity.y;
-
-            // Wrap around edges
-            //if (this.position.x > canvas.width) this.position.x = 0;
-            //if (this.position.x < 0) this.position.x = canvas.width;
-            //if (this.position.y > canvas.height) this.position.y = 0;
-            //if (this.position.y < 0) this.position.y = canvas.height;
-        }
-
-        draw() {
-            ctx.beginPath();
-            ctx.arc(this.position.x, this.position.y, BOID_SIZE, 0, Math.PI * 2);
-            ctx.fillStyle = 'blue';
-            ctx.fill();
-        }
-    }
-
-    const boids = [];
-
-    const centerX = canvas.width / 2;
-    const centerY = canvas.height / 2;
-    const radius = 100; // Initial cluster radius
-
-    for (let i = 0; i < BOID_COUNT; i++) {
-        const x = centerX + 200 + Math.random()*100;
-        const y = centerY + Math.random()*100;
-        const velocityX = Math.random()-0.5;
-        const velocityY = Math.random()-0.5;
-        boids.push(new Boid(x, y, velocityX, velocityY));
-    }
-
-    let animationFrame;
-    let isRunning = true;
-
-    function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        for (let boid of boids) {
-            boid.update(boids);
-            boid.draw();
-        }
-        animationFrame = requestAnimationFrame(animate);
-    }
-
-    function toggleAnimation() {
-        if (isRunning) {
-            cancelAnimationFrame(animationFrame);
-        } else {
-            animate();
-        }
-        isRunning = !isRunning;
-    }
-
-
-    const observer = new IntersectionObserver(
-        ([entry]) => {
-            if (entry.isIntersecting && !isRunning) {
-                toggleAnimation();
-            } else if (!entry.isIntersecting && isRunning) {
-                toggleAnimation();
-            }
-        },
-        { threshold: 0.1 }
-    );
-
-    observer.observe(canvas);
-    animate();
-
-    window.addEventListener('resize', () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    });
-</script>
-
-
-
-
-
-
-
-<!--
-<canvas id="boidsCanvasCursor" style="border: 2px solid black;"></canvas>
-
-
-<script>
-    const canvas2 = document.getElementById('boidsCanvasCursor');
-    const ctx2 = canvas2.getContext('2d');
-
-    canvas2.width = window.innerWidth;
-    canvas2.height = window.innerHeight;
-
-
-    const BOID_COUNT2 = 40;
-    const BOID_SIZE2 = 5;
-    const MAX_SPEED2 = 4;
-    const MIN_SPEED2 = 2;
-    const MAX_ACCELERATION2 = 0.1;
-    const ALIGNMENT_RADIUS2 = 100;
-    const COHESION_RADIUS2 = 100;
-    const SEPARATION_RADIUS2 = 20;
-    const CENTER_ATTRACTION2 = 0.1;
-    const CURSOR_AVOIDANCE_RADIUS = 100;
-    const CURSOR_AVOIDANCE_FACTOR = 2.0;
-
-    const ALIGNMENT_FACTOR2 = 0.02;
-    const COHESION_FACTOR2 = 0.004;
-    const SEPARATION_FACTOR2 = 0.16;
+    const {
+      boidCount,
+      boidSize,
+      maxSpeed,
+      minSpeed,
+      maxAcceleration,
+      alignmentRadius,
+      cohesionRadius,
+      separationRadius,
+      alignmentFactor,
+      cohesionFactor,
+      separationFactor,
+      centerAttraction,
+      centerRadius,
+      cursorAvoidanceRadius,
+      cursorAvoidanceFactor,
+    } = config;
 
     let cursorPosition = { x: null, y: null };
 
-    canvas2.addEventListener('mousemove', (event) => {
-        const rect = canvas2.getBoundingClientRect();
-        cursorPosition.x = event.clientX - rect.left;
-        cursorPosition.y = event.clientY - rect.top;
+    canvas.addEventListener('mousemove', (event) => {
+      const rect = canvas.getBoundingClientRect();
+      cursorPosition.x = event.clientX - rect.left;
+      cursorPosition.y = event.clientY - rect.top;
     });
 
-    canvas2.addEventListener('mouseleave', () => {
-        cursorPosition.x = null;
-        cursorPosition.y = null;
+    canvas.addEventListener('mouseleave', () => {
+      cursorPosition.x = null;
+      cursorPosition.y = null;
     });
 
-    class Boid2 {
-        constructor(x, y, velocityX, velocityY) {
-            this.position = { x, y };
-            this.velocity = { x: velocityX, y: velocityY };
+    class Boid {
+      constructor(x, y, velocityX, velocityY) {
+        this.position = { x, y };
+        this.velocity = { x: velocityX, y: velocityY };
+      }
+
+      update(boids) {
+        let alignment = { x: 0, y: 0 };
+        let cohesion = { x: 0, y: 0 };
+        let separation = { x: 0, y: 0 };
+        let total = 0;
+
+        for (let other of boids) {
+          const dx = other.position.x - this.position.x;
+          const dy = other.position.y - this.position.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (other !== this && distance < alignmentRadius) {
+            alignment.x += other.velocity.x;
+            alignment.y += other.velocity.y;
+            cohesion.x += other.position.x;
+            cohesion.y += other.position.y;
+            total++;
+          }
+
+
+
+          if (other !== this && distance < separationRadius) {
+            separation.x -= dx / distance;
+            separation.y -= dy / distance;
+          }
         }
 
-        update(boids) {
+        if (total > 0) {
+          alignment.x /= total;
+          alignment.y /= total;
+          cohesion.x /= total;
+          cohesion.y /= total;
+          cohesion.x -= this.position.x;
+          cohesion.y -= this.position.y;
+        }
+
+        let cursorAvoidance = { x: 0, y: 0 };
+        if (cursorPosition.x !== null && cursorPosition.y !== null) {
+          const dx = cursorPosition.x - this.position.x;
+          const dy = cursorPosition.y - this.position.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < cursorAvoidanceRadius) {
+            cursorAvoidance.x -= (dx / distance) * cursorAvoidanceFactor;
+            cursorAvoidance.y -= (dy / distance) * cursorAvoidanceFactor;
+          }
+        }
+
+        const center = { x: canvas.width / 2, y: canvas.height / 2 };
+        const distanceToCenter = Math.sqrt(
+          (center.x - this.position.x) ** 2 +
+          (center.y - this.position.y) ** 2
+        );
+        let toCenter = { x: 0, y: 0 };
+        if (distanceToCenter > centerRadius) {
+          const factor = (distanceToCenter - centerRadius) / centerRadius;
+          toCenter.x = (center.x - this.position.x) * factor;
+          toCenter.y = (center.y - this.position.y) * factor;
+        }
+
+        let accelerationX =
+          alignment.x * alignmentFactor +
+          cohesion.x * cohesionFactor +
+          separation.x * separationFactor +
+          toCenter.x * centerAttraction +
+          cursorAvoidance.x;
+
+        let accelerationY =
+          alignment.y * alignmentFactor +
+          cohesion.y * cohesionFactor +
+          separation.y * separationFactor +
+          toCenter.y * centerAttraction +
+          cursorAvoidance.y;
+
+        const accelerationMagnitude = Math.sqrt(
+          accelerationX ** 2 + accelerationY ** 2
+        );
+        if (accelerationMagnitude > maxAcceleration) {
+          accelerationX = (accelerationX / accelerationMagnitude) * maxAcceleration;
+          accelerationY = (accelerationY / accelerationMagnitude) * maxAcceleration;
+        }
+
+        this.velocity.x += accelerationX;
+        this.velocity.y += accelerationY;
+
+        const speed = Math.sqrt(
+          this.velocity.x ** 2 + this.velocity.y ** 2
+        );
+        if (speed > maxSpeed) {
+          this.velocity.x = (this.velocity.x / speed) * maxSpeed;
+          this.velocity.y = (this.velocity.y / speed) * maxSpeed;
+        } else if (speed < minSpeed) {
+          this.velocity.x = (this.velocity.x / speed) * minSpeed;
+          this.velocity.y = (this.velocity.y / speed) * minSpeed;
+        }
+
+        this.position.x += this.velocity.x;
+        this.position.y += this.velocity.y;
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.position.x, this.position.y, boidSize, 0, Math.PI * 2);
+        ctx.fillStyle = 'blue';
+        ctx.fill();
+      }
+    }
+
+    const boids = [];
+    for (let i = 0; i < boidCount; i++) {
+      const x = Math.random() * canvas.width;
+      const y = Math.random() * canvas.height;
+      const velocityX = Math.random() - 0.5;
+      const velocityY = Math.random() - 0.5;
+      boids.push(new Boid(x, y, velocityX, velocityY));
+    }
+
+    let isAnimating = false;
+    let animationFrame;
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let boid of boids) {
+        boid.update(boids);
+        boid.draw();
+      }
+      animationFrame = requestAnimationFrame(animate);
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !isAnimating) {
+          isAnimating = true;
+          animate();
+        } else if (!entry.isIntersecting && isAnimating) {
+          isAnimating = false;
+          cancelAnimationFrame(animationFrame);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(canvas);
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  }
+
+  const config1 = {
+    boidCount: 200,
+    boidSize: 3,
+    maxSpeed: 5,
+    minSpeed: 3,
+    maxAcceleration: 0.5,
+    alignmentRadius: 0,
+    cohesionRadius: 0,
+    separationRadius: 0,
+    alignmentFactor: 0.015,
+    cohesionFactor: 0.015,
+    separationFactor: 1.0,
+    centerAttraction: 0.4,
+    centerRadius: 150,
+    cursorAvoidanceRadius: 0,
+    cursorAvoidanceFactor: 0.0,
+  };
+
+  const config2 = { ...config1, alignmentRadius:50 ,cohesionFactor: 0.015,alignmentFactor: 0};
+
+
+  const config3 = { ...config2, alignmentRadius: 100,alignmentFactor: 0.015};
+
+
+  const config4 = { ...config3, separationRadius: 10};
+
+
+  const config5 = { ...config4, cursorAvoidanceRadius: 100, cursorAvoidanceFactor: 5.0};
+
+
+  initializeFlockingSimulation('simulation1', config1);
+  initializeFlockingSimulation('simulation2', config2);
+  initializeFlockingSimulation('simulation3', config3);
+  initializeFlockingSimulation('simulation4', config4);
+  initializeFlockingSimulation('simulation5', config5);
+</script>
+
+<script>
+  function initializeFlockingSimulationPredator(canvasId, config) {
+      const canvas = document.getElementById(canvasId);
+      const ctx = canvas.getContext('2d');
+
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const {
+        boidCount,
+        boidSize,
+        maxSpeed,
+        minSpeed,
+        maxAcceleration,
+        alignmentRadius,
+        cohesionRadius,
+        separationRadius,
+        alignmentFactor,
+        cohesionFactor,
+        separationFactor,
+        centerAttraction,
+        centerRadius,
+        predatorAvoidanceRadius,
+        predatorAvoidanceFactor,
+        predMaxSpeed,
+        predMinSpeed,
+        predMaxAccel,
+        predSize
+      } = config;
+
+      class Boid2{
+        constructor(x, y, velocityX, velocityY) {
+          this.position = { x, y };
+          this.velocity = { x: velocityX, y: velocityY };
+        }
+
+        update(boids,pred) {
+          let alignment = { x: 0, y: 0 };
+          let cohesion = { x: 0, y: 0 };
+          let separation = { x: 0, y: 0 };
+          let total = 0;
+
+          for (let other of boids) {
+            const dx = other.position.x - this.position.x;
+            const dy = other.position.y - this.position.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (other !== this && distance < alignmentRadius) {
+              alignment.x += other.velocity.x;
+              alignment.y += other.velocity.y;
+              cohesion.x += other.position.x;
+              cohesion.y += other.position.y;
+              total++;
+            }
+
+
+
+            if (other !== this && distance < separationRadius) {
+              separation.x -= dx / distance;
+              separation.y -= dy / distance;
+            }
+          }
+
+          if (total > 0) {
+            alignment.x /= total;
+            alignment.y /= total;
+            cohesion.x /= total;
+            cohesion.y /= total;
+            cohesion.x -= this.position.x;
+            cohesion.y -= this.position.y;
+          }
+
+          let pred_force = {x:0,y:0};
+
+          let dist_pred;
+          dist_pred = Math.sqrt((this.position.x - pred.position.x)**2 + (this.position.y - pred.position.y)**2);
+
+          if(dist_pred <= predatorAvoidanceRadius){
+            pred_force.x = predatorAvoidanceFactor*(this.position.x - pred.position.x)/dist_pred;
+            pred_force.y = predatorAvoidanceFactor*(this.position.y - pred.position.y)/dist_pred;
+          }
+
+          const center = { x: canvas.width / 2, y: canvas.height / 2 };
+          const distanceToCenter = Math.sqrt(
+            (center.x - this.position.x) ** 2 +
+            (center.y - this.position.y) ** 2
+          );
+          let toCenter = { x: 0, y: 0 };
+          if (distanceToCenter > centerRadius) {
+            const factor = (distanceToCenter - centerRadius) / centerRadius;
+            toCenter.x = (center.x - this.position.x) * factor;
+            toCenter.y = (center.y - this.position.y) * factor;
+          }
+
+          let accelerationX =
+            alignment.x * alignmentFactor +
+            cohesion.x * cohesionFactor +
+            separation.x * separationFactor +
+            toCenter.x * centerAttraction +
+            pred_force.x;
+
+          let accelerationY =
+            alignment.y * alignmentFactor +
+            cohesion.y * cohesionFactor +
+            separation.y * separationFactor +
+            toCenter.y * centerAttraction +
+            pred_force.y;
+
+          const accelerationMagnitude = Math.sqrt(
+            accelerationX ** 2 + accelerationY ** 2
+          );
+          if (accelerationMagnitude > maxAcceleration) {
+            accelerationX = (accelerationX / accelerationMagnitude) * maxAcceleration;
+            accelerationY = (accelerationY / accelerationMagnitude) * maxAcceleration;
+          }
+
+          this.velocity.x += accelerationX;
+          this.velocity.y += accelerationY;
+
+          const speed = Math.sqrt(
+            this.velocity.x ** 2 + this.velocity.y ** 2
+          );
+          if (speed > maxSpeed) {
+            this.velocity.x = (this.velocity.x / speed) * maxSpeed;
+            this.velocity.y = (this.velocity.y / speed) * maxSpeed;
+          } else if (speed < minSpeed) {
+            this.velocity.x = (this.velocity.x / speed) * minSpeed;
+            this.velocity.y = (this.velocity.y / speed) * minSpeed;
+          }
+
+          this.position.x += this.velocity.x;
+          this.position.y += this.velocity.y;
+        }
+
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.position.x, this.position.y, boidSize, 0, Math.PI * 2);
+          ctx.fillStyle = 'blue';
+          ctx.fill();
+        }
+      }
+
+      class Pred{
+        constructor(x, y, velocityX, velocityY) {
+          this.position = { x, y };
+          this.velocity = { x: velocityX, y: velocityY };
+        }
+
+        update(pred,boids) {
+          let dx_min;
+          let dy_min;
+          let minDistance = 1000;
+          for (let other of boids) {
+            const dx = other.position.x - this.position.x;
+            const dy = other.position.y - this.position.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            if(distance < minDistance){
+              dx_min = dx;
+              dy_min = dy;
+              minDistance = distance;
+            }
+          }
+          
+          let accelerationX =
+            dx_min;
+
+          let accelerationY =
+            dy_min;
+
+          const accelerationMagnitude = Math.sqrt(
+            accelerationX ** 2 + accelerationY ** 2
+          );
+          if (accelerationMagnitude > predMaxAccel) {
+            accelerationX = (accelerationX / accelerationMagnitude) * predMaxAccel;
+            accelerationY = (accelerationY / accelerationMagnitude) * predMaxAccel;
+          }
+
+          this.velocity.x += accelerationX;
+          this.velocity.y += accelerationY;
+
+          const speed = Math.sqrt(
+            this.velocity.x ** 2 + this.velocity.y ** 2
+          );
+          if (speed > predMaxSpeed) {
+            this.velocity.x = (this.velocity.x / speed) * predMaxSpeed;
+            this.velocity.y = (this.velocity.y / speed) * predMaxSpeed;
+          } else if (speed < predMinSpeed) {
+            this.velocity.x = (this.velocity.x / speed) * predMinSpeed;
+            this.velocity.y = (this.velocity.y / speed) * predMinSpeed;
+          }
+
+          this.position.x += this.velocity.x;
+          this.position.y += this.velocity.y;
+        }
+
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.position.x, this.position.y, predSize, 0, Math.PI * 2);
+          ctx.fillStyle = 'red';
+          ctx.fill();
+        }
+      }
+
+
+
+
+      const boids = [];
+      for (let i = 0; i < boidCount; i++) {
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height;
+        const velocityX = Math.random() - 0.5;
+        const velocityY = Math.random() - 0.5;
+        boids.push(new Boid2(x, y, velocityX, velocityY));
+      }
+
+      pred = new Pred(100,100,0,0);
+
+      let isAnimating = false;
+      let animationFrame;
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (let boid of boids) {
+          boid.update(boids,pred);
+          boid.draw();
+        }
+        pred.update(pred,boids);
+        pred.draw();
+
+        animationFrame = requestAnimationFrame(animate);
+      }
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting && !isAnimating) {
+            isAnimating = true;
+            animate();
+          } else if (!entry.isIntersecting && isAnimating) {
+            isAnimating = false;
+            cancelAnimationFrame(animationFrame);
+          }
+        },
+        { threshold: 0.1 }
+      );
+
+      observer.observe(canvas);
+
+      window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      });
+    }
+
+
+    const predConfig1 = {
+      boidCount: 200,
+      boidSize: 3,
+      maxSpeed: 5,
+      minSpeed: 3,
+      maxAcceleration: 0.5,
+      cohesionRadius: 0,
+      separationRadius: 10,
+      alignmentRadius: 100,
+      alignmentFactor: 0.015,
+      cohesionFactor: 0.015,
+      separationFactor: 1.0,
+      centerAttraction: 0.2,
+      centerRadius: 150,
+      predatorAvoidanceRadius: 100,
+        predatorAvoidanceFactor: 100.0,
+        predMaxSpeed: 6,
+        predMinSpeed: 3,
+        predMaxAccel: 0.5,
+        predSize: 5
+    };
+    const predConfig2 = {
+      boidCount: 80,
+      boidSize: 3,
+      maxSpeed: 5,
+      minSpeed: 3,
+      maxAcceleration: 0.5,
+      cohesionRadius: 0,
+      separationRadius: 10,
+      alignmentRadius: 189,
+      alignmentFactor: -0.048,
+      cohesionFactor: 0.13,
+      separationFactor: 20.0,
+      centerAttraction: 0.068,
+      centerRadius: 150,
+      predatorAvoidanceRadius: 100,
+        predatorAvoidanceFactor: 0.92,
+        predMaxSpeed: 6,
+        predMinSpeed: 3,
+        predMaxAccel: 0.5,
+        predSize: 5
+    };
+
+
+    initializeFlockingSimulationPredator('predSimulation1', predConfig1);
+    initializeFlockingSimulationPredator('predSimulation2', predConfig2);
+</script>
+
+<script>
+
+  const summaryData = {
+    alignmentFactor: [],
+    cohesionFactor: [],
+    centerAttraction: [],
+    predatorAvoidanceFactor: [],
+    alignmentRadius: [],
+    centerRadius: [],
+    predatorAvoidanceRadius: [],
+    killCounter: [0],
+    killCounterPred: [0],
+    killCounterCollision: [0],
+    killCounterDistance: [0]
+  };
+    function initializeFlockingSimulationPredatorEvolve(canvasId, config) {
+        const canvas = document.getElementById(canvasId);
+        const ctx = canvas.getContext('2d');
+  
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+  
+        
+  
+        const {
+          boidCount,
+          boidSize,
+          maxSpeed,
+          minSpeed,
+          maxAcceleration,
+          sepKillRadius,
+          centerKillRadius,
+          predKillRadius,
+          separationRadius_in,
+        alignmentRadius_in,
+        centerAttraction_in,
+        centerRadius_in,
+        predatorAvoidanceRadius_in,
+        separationFactor_in,
+        alignmentFactor_in,
+        cohesionFactor_in,
+        predatorAvoidanceFactor_in,
+          predMaxSpeed,
+          predMinSpeed,
+          predMaxAccel,
+          predSize,
+          sdAlignmentFactor,
+          sdCohesionFactor,
+          sdCenterAttraction,
+          sdSeparationFactor,
+          sdPredatorAvoidanceFactor,
+          sdAlignmentRadius,
+          sdSeparationRadius,
+          sdCenterRadius,
+          sdPredatorAvoidanceRadius,
+          showStats,
+          collision_factor,
+          init_x,
+          init_y,
+          init_vx,
+          init_vy
+        } = config;
+  
+        class Boid3{
+          constructor(x, y, velocityX, velocityY,
+          alignmentRadius,
+          separationRadius,
+          centerRadius,
+          predatorAvoidanceRadius,
+          alignmentFactor,
+          cohesionFactor,
+          centerAttraction,
+          separationFactor,
+          predatorAvoidanceFactor) {
+            this.position = { x, y };
+            this.velocity = { x: velocityX, y: velocityY };
+            this.alignmentRadius = alignmentRadius;
+            this.separationRadius = separationRadius;
+            this.centerRadius = centerRadius;
+            this.predatorAvoidanceRadius = predatorAvoidanceRadius;
+            this.alignmentFactor = alignmentFactor;
+            this.cohesionFactor = cohesionFactor;
+            this.centerAttraction = centerAttraction;
+            this.separationFactor = separationFactor;
+            this.predatorAvoidanceFactor = predatorAvoidanceFactor;
+          }
+  
+          update(boids,preds) {
             let alignment = { x: 0, y: 0 };
             let cohesion = { x: 0, y: 0 };
             let separation = { x: 0, y: 0 };
             let total = 0;
-
+  
             for (let other of boids) {
-                const dx = other.position.x - this.position.x;
-                const dy = other.position.y - this.position.y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-
-                if (other !== this && distance < ALIGNMENT_RADIUS2) {
-                    alignment.x += other.velocity.x;
-                    alignment.y += other.velocity.y;
-
-                    cohesion.x += other.position.x;
-                    cohesion.y += other.position.y;
-
-                    total++;
-                }
-
-                if (other !== this && distance < SEPARATION_RADIUS2) {
-                    separation.x -= dx / distance;
-                    separation.y -= dy / distance;
-                }
+              const dx = other.position.x - this.position.x;
+              const dy = other.position.y - this.position.y;
+              const distance = Math.sqrt(dx * dx + dy * dy);
+  
+              if (other !== this && distance < this.alignmentRadius) {
+                alignment.x += other.velocity.x;
+                alignment.y += other.velocity.y;
+                cohesion.x += other.position.x;
+                cohesion.y += other.position.y;
+                total++;
+              }
+  
+  
+  
+              if (other !== this && distance < this.separationRadius) {
+                separation.x -= dx / distance;
+                separation.y -= dy / distance;
+              }
             }
-
+  
             if (total > 0) {
-                alignment.x /= total;
-                alignment.y /= total;
-
-                cohesion.x = cohesion.x / total - this.position.x;
-                cohesion.y = cohesion.y / total - this.position.y;
+              alignment.x /= total;
+              alignment.y /= total;
+              cohesion.x /= total;
+              cohesion.y /= total;
+              cohesion.x -= this.position.x;
+              cohesion.y -= this.position.y;
             }
-
-            let cursorAvoidance = { x: 0, y: 0 };
-
-            if (cursorPosition.x !== null && cursorPosition.y !== null) {
-                const dx = cursorPosition.x - this.position.x;
-                const dy = cursorPosition.y - this.position.y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-
-                if (distance < CURSOR_AVOIDANCE_RADIUS) {
-                    cursorAvoidance.x -= dx / distance * CURSOR_AVOIDANCE_FACTOR;
-                    cursorAvoidance.y -= dy / distance * CURSOR_AVOIDANCE_FACTOR;
-                }
+  
+            let pred_force = {x:0,y:0};
+  
+            let dist_pred;
+            for(let pred of preds){
+              dist_pred = Math.sqrt((this.position.x - pred.position.x)**2 + (this.position.y - pred.position.y)**2);
+              if(dist_pred <= this.predatorAvoidanceRadius){
+                pred_force.x += this.predatorAvoidanceFactor*(this.position.x - pred.position.x)/dist_pred;
+                pred_force.y += this.predatorAvoidanceFactor*(this.position.y - pred.position.y)/dist_pred;
+              }
             }
-
-
-            // Attraction to center
-            const center = { x: canvas2.width / 2, y: canvas2.height / 2 };
-            const toCenter = {
-                x: center.x - this.position.x,
-                y: center.y - this.position.y,
-            };
-
-            let accelerationX = alignment.x * ALIGNMENT_FACTOR2 + cohesion.x * COHESION_FACTOR2 + separation.x * SEPARATION_FACTOR2 + Math.sign(toCenter.x) * CENTER_ATTRACTION2 + cursorAvoidance.x;
-            let accelerationY = alignment.y * ALIGNMENT_FACTOR2 + cohesion.y * COHESION_FACTOR2 + separation.y * SEPARATION_FACTOR2 + Math.sign(toCenter.y) * CENTER_ATTRACTION2 + cursorAvoidance.y;
-
-            const accelerationMagnitude = Math.sqrt(accelerationX ** 2 + accelerationY ** 2);
-            if (accelerationMagnitude > MAX_ACCELERATION2) {
-                accelerationX = (accelerationX / accelerationMagnitude) * MAX_ACCELERATION2;
-                accelerationY = (accelerationY / accelerationMagnitude) * MAX_ACCELERATION2;
+  
+  
+            const center = { x: canvas.width / 2, y: canvas.height / 2 };
+            const distanceToCenter = Math.sqrt(
+              (center.x - this.position.x) ** 2 +
+              (center.y - this.position.y) ** 2
+            );
+            let toCenter = { x: 0, y: 0 };
+            if (distanceToCenter > this.centerRadius) {
+              const factor = (distanceToCenter - this.centerRadius) / this.centerRadius;
+              toCenter.x = (center.x - this.position.x) * factor;
+              toCenter.y = (center.y - this.position.y) * factor;
             }
-
+  
+            let accelerationX =
+              alignment.x * this.alignmentFactor +
+              cohesion.x * this.cohesionFactor +
+              separation.x * this.separationFactor +
+              toCenter.x * this.centerAttraction +
+              pred_force.x;
+  
+            let accelerationY =
+              alignment.y * this.alignmentFactor +
+              cohesion.y * this.cohesionFactor +
+              separation.y * this.separationFactor +
+              toCenter.y * this.centerAttraction +
+              pred_force.y;
+  
+            const accelerationMagnitude = Math.sqrt(
+              accelerationX ** 2 + accelerationY ** 2
+            );
+            if (accelerationMagnitude > maxAcceleration) {
+              accelerationX = (accelerationX / accelerationMagnitude) * maxAcceleration;
+              accelerationY = (accelerationY / accelerationMagnitude) * maxAcceleration;
+            }
+  
             this.velocity.x += accelerationX;
             this.velocity.y += accelerationY;
-
-            const speed = Math.sqrt(this.velocity.x ** 2 + this.velocity.y ** 2);
-            if (speed > MAX_SPEED2) {
-                this.velocity.x = (this.velocity.x / speed) * MAX_SPEED2;
-                this.velocity.y = (this.velocity.y / speed) * MAX_SPEED2;
-            } else if (speed < MIN_SPEED2) {
-                this.velocity.x = (this.velocity.x / speed) * MIN_SPEED2;
-                this.velocity.y = (this.velocity.y / speed) * MIN_SPEED2;
+  
+            const speed = Math.sqrt(
+              this.velocity.x ** 2 + this.velocity.y ** 2
+            );
+            if (speed > maxSpeed) {
+              this.velocity.x = (this.velocity.x / speed) * maxSpeed;
+              this.velocity.y = (this.velocity.y / speed) * maxSpeed;
+            } else if (speed < minSpeed) {
+              this.velocity.x = (this.velocity.x / speed) * minSpeed;
+              this.velocity.y = (this.velocity.y / speed) * minSpeed;
             }
-
+  
             this.position.x += this.velocity.x;
             this.position.y += this.velocity.y;
-
-            //if (this.position.x > canvas2.width) this.position.x = 0;
-            //if (this.position.x < 0) this.position.x = canvas2.width;
-            //if (this.position.y > canvas2.height) this.position.y = 0;
-            //if (this.position.y < 0) this.position.y = canvas2.height;
+          }
+  
+          draw() {
+            ctx.beginPath();
+            ctx.arc(this.position.x, this.position.y, boidSize, 0, Math.PI * 2);
+            ctx.fillStyle = 'blue';
+            ctx.fill();
+          }
         }
-
-        draw() {
-            ctx2.beginPath();
-            ctx2.arc(this.position.x, this.position.y, BOID_SIZE2, 0, Math.PI * 2);
-            ctx2.fillStyle = 'blue';
-            ctx2.fill();
+  
+        class Pred3{
+          constructor(x, y, velocityX, velocityY) {
+            this.position = { x, y };
+            this.velocity = { x: velocityX, y: velocityY };
+          }
+  
+          update(pred,boids) {
+            let dx_min;
+            let dy_min;
+            let minDistance = 1000;
+            for (let other of boids) {
+              const dx = other.position.x - this.position.x;
+              const dy = other.position.y - this.position.y;
+              const distance = Math.sqrt(dx * dx + dy * dy);
+              if(distance < minDistance){
+                dx_min = dx;
+                dy_min = dy;
+                minDistance = distance;
+              }
+            }
+            
+            let accelerationX =
+              dx_min;
+  
+            let accelerationY =
+              dy_min;
+  
+            const accelerationMagnitude = Math.sqrt(
+              accelerationX ** 2 + accelerationY ** 2
+            );
+            if (accelerationMagnitude > predMaxAccel) {
+              accelerationX = (accelerationX / accelerationMagnitude) * predMaxAccel;
+              accelerationY = (accelerationY / accelerationMagnitude) * predMaxAccel;
+            }
+  
+            this.velocity.x += accelerationX;
+            this.velocity.y += accelerationY;
+  
+            const speed = Math.sqrt(
+              this.velocity.x ** 2 + this.velocity.y ** 2
+            );
+            if (speed > predMaxSpeed) {
+              this.velocity.x = (this.velocity.x / speed) * predMaxSpeed;
+              this.velocity.y = (this.velocity.y / speed) * predMaxSpeed;
+            } else if (speed < predMinSpeed) {
+              this.velocity.x = (this.velocity.x / speed) * predMinSpeed;
+              this.velocity.y = (this.velocity.y / speed) * predMinSpeed;
+            }
+  
+            this.position.x += this.velocity.x;
+            this.position.y += this.velocity.y;
+          }
+  
+          draw() {
+            ctx.beginPath();
+            ctx.arc(this.position.x, this.position.y, predSize, 0, Math.PI * 2);
+            ctx.fillStyle = 'red';
+            ctx.fill();
+          }
         }
+  
+        const boids = [];
+        for (let i = 0; i < boidCount; i++) {
+          const x = init_x +  (Math.random()-0.5) * canvas.width/10;
+          const y = init_y +  (Math.random()-0.5) * canvas.height/10;
+          const velocityX = init_vx + Math.random() - 0.5;
+          const velocityY = init_vy + Math.random() - 0.5;
+          
+          
+          const alignmentRadius = alignmentRadius_in + (Math.random()-0.5)*sdAlignmentRadius;
+          const separationRadius = separationRadius_in + (Math.random()-0.5)*sdSeparationRadius;
+          const centerRadius = centerRadius_in + (Math.random()-0.5)*sdCenterRadius;
+          const predatorAvoidanceRadius = predatorAvoidanceRadius_in + (Math.random()-0.5)*sdPredatorAvoidanceRadius;
+  
+          const alignmentFactor = alignmentFactor_in + (Math.random()-0.5)*sdAlignmentFactor;
+          const cohesionFactor = cohesionFactor_in + (Math.random()-0.5)*sdCohesionFactor;
+          const centerAttraction = centerAttraction_in +(Math.random()-0.5)*sdCenterAttraction;
+          const separationFactor = separationFactor_in +(Math.random()-0.5)*sdSeparationFactor;
+          const predatorAvoidanceFactor = predatorAvoidanceFactor_in+(Math.random()-0.5)*sdPredatorAvoidanceFactor;
+          boids.push(new Boid3(x, y, velocityX, velocityY,
+          alignmentRadius,
+          separationRadius,
+          centerRadius,
+          predatorAvoidanceRadius,
+          alignmentFactor,
+          cohesionFactor,
+          centerAttraction,
+          separationFactor,
+          predatorAvoidanceFactor
+          ));
+        }
+        const preds = [];
+        preds.push(new Pred3(0.1* canvas.width,0.1* canvas.height,0,0));
+        preds.push(new Pred3(0.1* canvas.width,0.9* canvas.height,0,0));
+        preds.push(new Pred3(0.9* canvas.width,0.1* canvas.height,0,0));
+        preds.push(new Pred3(0.9* canvas.width,0.9* canvas.height,0,0));
+  
+  
+  
+        function create_new_boid(boids){
+          const totalBoids = boids.length;
+          let avgAlignmentRadius = 0;
+          let avgSeparationRadius = 0;
+          let avgCenterRadius = 0;
+          let avgPredatorAvoidanceRadius = 0;
+          let avgAlignmentFactor = 0;
+          let avgCohesionFactor = 0;
+          let avgCenterAttraction = 0;
+          let avgSeparationFactor = 0;
+          let avgPredatorAvoidanceFactor = 0;
+          for (let boid of boids) {
+            avgAlignmentRadius += boid.alignmentRadius;
+            avgSeparationRadius += boid.separationRadius;
+            avgCenterRadius += boid.centerRadius;
+            avgPredatorAvoidanceRadius += boid.predatorAvoidanceRadius;
+            avgAlignmentFactor += boid.alignmentFactor;
+            avgCohesionFactor += boid.cohesionFactor;
+            avgCenterAttraction += boid.centerAttraction;
+            avgSeparationFactor += boid.separationFactor;
+            avgPredatorAvoidanceFactor += boid.predatorAvoidanceFactor;
     }
-
-    const boids2 = [];
-    const centerX2 = canvas2.width / 2;
-    const centerY2 = canvas2.height / 2;
-    const radius2 = 100;
-
-    for (let i = 0; i < BOID_COUNT2; i++) {
-      const x = centerX + 200 + Math.random()*100;
-        const y = centerY + Math.random()*100;
-        const velocityX = Math.random()-0.5;
-        const velocityY = Math.random()-0.5;
-        boids2.push(new Boid2(x, y, velocityX, velocityY));
-    }
-
-    function animate2() {
-        ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
-
-        if (cursorPosition.x !== null && cursorPosition.y !== null) {
-            ctx2.beginPath();
-            ctx2.arc(cursorPosition.x, cursorPosition.y, CURSOR_AVOIDANCE_RADIUS, 0, Math.PI * 2);
-            ctx2.strokeStyle = 'red';
-            ctx2.stroke();
+  
+    avgAlignmentRadius = avgAlignmentRadius / totalBoids;
+    avgSeparationRadius = avgSeparationRadius / totalBoids;
+    avgCenterRadius = avgCenterRadius / totalBoids;
+    avgPredatorAvoidanceRadius = avgPredatorAvoidanceRadius / totalBoids;
+  
+  
+    avgAlignmentFactor = avgAlignmentFactor / totalBoids;
+    avgCohesionFactor = avgCohesionFactor / totalBoids;
+    avgCenterAttraction = avgCenterAttraction / totalBoids;
+    avgSeparationFactor = avgSeparationFactor / totalBoids;
+    avgPredatorAvoidanceFactor = avgPredatorAvoidanceFactor / totalBoids;
+  
+  
+  
+          const x = 10*(Math.random()-0.5) + canvas.width/2-200;
+          const y = 10*(Math.random()-0.5) + canvas.height /2;
+          const velocityX = Math.random() - 0.5;
+          const velocityY = 3 + Math.random();
+  
+  
+          const alignmentRadius = avgAlignmentRadius + (Math.random()-0.5)*sdAlignmentRadius;
+          const separationRadius = avgSeparationRadius + (Math.random()-0.5)*sdSeparationRadius;
+          const centerRadius = avgCenterRadius + (Math.random()-0.5)*sdCenterRadius;
+          const predatorAvoidanceRadius = avgPredatorAvoidanceRadius + (Math.random()-0.5)*sdPredatorAvoidanceRadius;
+  
+          const alignmentFactor = avgAlignmentFactor + (Math.random()-0.5)*sdAlignmentFactor;
+          const cohesionFactor = avgCohesionFactor + (Math.random()-0.5)*sdCohesionFactor;
+          const centerAttraction = avgCenterAttraction+(Math.random()-0.5)*sdCenterAttraction;
+          const separationFactor = avgSeparationFactor+(Math.random()-0.5)*sdSeparationFactor;
+          const predatorAvoidanceFactor = avgPredatorAvoidanceFactor+(Math.random()-0.5)*sdPredatorAvoidanceFactor;
+          boids.push(new Boid3(x, y, velocityX, velocityY,
+          alignmentRadius,
+          separationRadius,
+          centerRadius,
+          predatorAvoidanceRadius,
+          alignmentFactor,
+          cohesionFactor,
+          centerAttraction,
+          separationFactor,
+          predatorAvoidanceFactor
+          ));
         }
-
-        for (let boid of boids2) {
-            boid.update(boids2);
+  
+        function create_new_pred(preds){
+          preds.push(new Pred3(Math.round(Math.random()) * canvas.width + Math.random()*50,Math.round(Math.random())* canvas.height + Math.random()*50,Math.random()*2,Math.random()*2));
+        }
+  
+        function kill_pred(boids,preds,predKillRadius){
+          for (let i = boids.length - 1; i >= 0; i--) {
+            for(let j = preds.length -1; j>=0;j--)
+          if (Math.sqrt((boids[i].position.x - preds[j].position.x)**2 + (boids[i].position.y - preds[j].position.y)**2) <= predKillRadius) {
+          boids.splice(i, 1); // Remove the boid at index i
+          preds.splice(j,1);
+          create_new_boid(boids);
+          create_new_pred(preds);
+          killCounter += 1;
+          killCounterPred += 1;
+          break
+          }
+        }
+        }
+        function kill_sep(boids, sepKillRadius) {
+    for (let i = boids.length - 1; i >= 0; i--) { // Iterate backward
+      for (let j = i - 1; j >= 0; j--) { // Compare only pairs that haven’t been checked yet
+        const boid1 = boids[i];
+        const boid2 = boids[j];
+        const distance = Math.sqrt(
+          (boid1.position.x - boid2.position.x) ** 2 +
+          (boid1.position.y - boid2.position.y) ** 2
+        );
+        const velo_diff = Math.sqrt(
+          (boid1.velocity.x - boid2.velocity.x) ** 2 +
+          (boid1.velocity.y - boid2.velocity.y) ** 2
+        );
+        if (distance < sepKillRadius && velo_diff>=maxSpeed*collision_factor) {//only kill if sufficiently different velo vectors!
+          // Remove boid1 and boid2
+          boids.splice(i, 1); // Remove the boid with the higher index first
+          boids.splice(j, 1); // Remove the other boid
+          create_new_boid(boids); // Replace with new boids if needed
+          create_new_boid(boids);
+          killCounter += 2;
+          killCounterCollision += 2;
+          break; // Exit inner loop as `i` is now invalid
+        }
+      }
+    }
+  }
+              
+        function kill_center(boids,centerKillRadius){
+          const center = { x: canvas.width / 2, y: canvas.height / 2 };
+            
+          for (let i = boids.length - 1; i >= 0; i--) {
+  
+          if (boids[i].position.x<=0){
+          boids.splice(i, 1); // Remove the boid at index i
+          create_new_boid(boids)
+          killCounter += 1;
+          killCounterDistance += 1;
+        }
+        if (boids[i].position.y<=0){
+          boids.splice(i, 1); // Remove the boid at index i
+          create_new_boid(boids)
+          killCounter += 1;
+          killCounterDistance += 1;
+        }
+        if (boids[i].position.x>=canvas.width){
+          boids.splice(i, 1); // Remove the boid at index i
+          create_new_boid(boids)
+          killCounter += 1;
+          killCounterDistance += 1;
+        }
+        if (boids[i].position.y>=canvas.height){
+          boids.splice(i, 1); // Remove the boid at index i
+          create_new_boid(boids)
+          killCounter += 1;
+          killCounterDistance += 1;
+        }
+      }
+    }
+  
+        let isAnimating = false;
+        let animationFrame;
+  
+  
+  let killCounterLast = 0;
+  let killCounterPredLast = 0;
+  let killCounterCollisionLast = 0;
+  let killCounterDistanceLast = 0;
+  function recordSummaryStatistics(boids, step) {
+    const totalBoids = boids.length;
+          let avgAlignmentRadius = 0;
+          let avgSeparationRadius = 0;
+          let avgCenterRadius = 0;
+          let avgPredatorAvoidanceRadius = 0;
+          let avgAlignmentFactor = 0;
+          let avgCohesionFactor = 0;
+          let avgCenterAttraction = 0;
+          let avgSeparationFactor = 0;
+          let avgPredatorAvoidanceFactor = 0;
+          for (let boid of boids) {
+            avgAlignmentRadius += boid.alignmentRadius;
+            avgSeparationRadius += boid.separationRadius;
+            avgCenterRadius += boid.centerRadius;
+            avgPredatorAvoidanceRadius += boid.predatorAvoidanceRadius;
+            avgAlignmentFactor += boid.alignmentFactor;
+            avgCohesionFactor += boid.cohesionFactor;
+            avgCenterAttraction += boid.centerAttraction;
+            avgSeparationFactor += boid.separationFactor;
+            avgPredatorAvoidanceFactor += boid.predatorAvoidanceFactor;
+    }
+  
+    avgAlignmentRadius = round(avgAlignmentRadius / totalBoids,4);
+    avgCenterRadius = round(avgCenterRadius / totalBoids,4);
+    avgPredatorAvoidanceRadius = round(avgPredatorAvoidanceRadius / totalBoids,4);
+  
+  
+    avgAlignmentFactor = round(avgAlignmentFactor / totalBoids,4);
+    avgCohesionFactor = round(avgCohesionFactor / totalBoids,4);
+    avgCenterAttraction = round(avgCenterAttraction / totalBoids,4);
+    avgPredatorAvoidanceFactor = round(avgPredatorAvoidanceFactor / totalBoids,4);
+  
+    summaryData.alignmentFactor.push(avgAlignmentFactor);
+    summaryData.cohesionFactor.push(avgCohesionFactor);
+    summaryData.centerAttraction.push(avgCenterAttraction);
+    summaryData.predatorAvoidanceFactor.push(avgPredatorAvoidanceFactor);
+    summaryData.alignmentRadius.push(avgAlignmentRadius);
+    summaryData.centerRadius.push(avgCenterRadius);
+    summaryData.predatorAvoidanceRadius.push(avgPredatorAvoidanceRadius);
+    summaryData.killCounter.push(killCounter - killCounterLast);
+    summaryData.killCounterPred.push(killCounterPred - killCounterPredLast);
+    summaryData.killCounterCollision.push(killCounterCollision - killCounterCollisionLast);
+    summaryData.killCounterDistance.push(killCounterDistance - killCounterDistanceLast);
+    
+  killCounterLast = killCounter;
+  killCounterPredLast = killCounterPred;
+  killCounterCollisionLast = killCounterCollision;
+  killCounterDistanceLast = killCounterDistance;
+  
+  
+    updateGraph(step)
+  
+  }
+  
+  function updateGraph(step) {
+    const graphCanvas = document.getElementById('summaryGraph');
+    const graphCtx = graphCanvas.getContext('2d');
+  
+    graphCtx.clearRect(0, 0, graphCanvas.width, graphCanvas.height);
+  
+    const timeSteps = Array.from({ length: summaryData.alignmentFactor.length }, (_, i) => i * 200);
+  
+    const drawLine = (data, color) => {
+      dataMax = Math.max(...data);
+      dataMin = Math.min(...data);
+      dataPoints = summaryData.alignmentFactor.length;
+      graphCtx.beginPath();
+      graphCtx.strokeStyle = color;
+      data.forEach((value, index) => {
+        const x = (index / dataPoints) * graphCanvas.width;
+        const y = 490 - (((value - dataMin) / (dataMax - dataMin)) * 480); // Scale data
+  
+        //const y = 100;
+        if (index === 0) {
+          graphCtx.moveTo(x, y);
+        } else {
+          graphCtx.lineTo(x, y);
+        }
+      });
+      graphCtx.stroke();
+    };
+  
+    if (document.getElementById('showAlignmentFactor').checked) {
+      drawLine(summaryData.alignmentFactor, 'blue');
+    }
+    if (document.getElementById('showCohesionFactor').checked) {
+      drawLine(summaryData.cohesionFactor, 'green');
+    }
+    if (document.getElementById('showCenterAttraction').checked) {
+      drawLine(summaryData.centerAttraction, 'purple');
+    }
+    if (document.getElementById('showPredatorAvoidanceFactor').checked) {
+      drawLine(summaryData.predatorAvoidanceFactor, 'red');
+    }
+    if (document.getElementById('showAlignmentRadius').checked) {
+      drawLine(summaryData.alignmentRadius, 'orange');
+    }
+    if (document.getElementById('showCenterRadius').checked) {
+      drawLine(summaryData.centerRadius, 'darkgoldenrod');
+    }
+    if (document.getElementById('showPredatorAvoidanceRadius').checked) {
+      drawLine(summaryData.predatorAvoidanceRadius, 'coral');
+    }
+    if (document.getElementById('showKillCounter').checked) {
+      drawLine(summaryData.killCounter, 'darkred');
+    }
+    if (document.getElementById('showKillCounterPred').checked) {
+      drawLine(summaryData.killCounterPred, 'pink');
+    }
+    if (document.getElementById('showKillCounterCollision').checked) {
+      drawLine(summaryData.killCounterCollision, 'yellow');
+    }
+    if (document.getElementById('showKillCounterDistance').checked) {
+      drawLine(summaryData.killCounterDistance, 'lightgreen');
+    }
+  
+  }
+  
+  
+  function round(num, decimalPlaces = 0) {
+      var p = Math.pow(10, decimalPlaces);
+      var n = (num * p) * (1 + Number.EPSILON);
+      return Math.round(n) / p;
+  }
+        
+  
+  
+  
+  
+  function drawBoidStatistics(ctx, boids) {
+  
+    // Calculate averages
+  
+  
+  const totalBoids = boids.length;
+          let avgAlignmentRadius = 0;
+          let avgSeparationRadius = 0;
+          let avgCenterRadius = 0;
+          let avgPredatorAvoidanceRadius = 0;
+          let avgAlignmentFactor = 0;
+          let avgCohesionFactor = 0;
+          let avgCenterAttraction = 0;
+          let avgSeparationFactor = 0;
+          let avgPredatorAvoidanceFactor = 0;
+          for (let boid of boids) {
+            avgAlignmentRadius += boid.alignmentRadius;
+            avgSeparationRadius += boid.separationRadius;
+            avgCenterRadius += boid.centerRadius;
+            avgPredatorAvoidanceRadius += boid.predatorAvoidanceRadius;
+            avgAlignmentFactor += boid.alignmentFactor;
+            avgCohesionFactor += boid.cohesionFactor;
+            avgCenterAttraction += boid.centerAttraction;
+            avgSeparationFactor += boid.separationFactor;
+            avgPredatorAvoidanceFactor += boid.predatorAvoidanceFactor;
+    }
+  
+    avgAlignmentRadius = round(avgAlignmentRadius / totalBoids,4);
+    avgSeparationRadius = round(avgSeparationRadius / totalBoids,4);
+    avgCenterRadius = round(avgCenterRadius / totalBoids,4);
+    avgPredatorAvoidanceRadius = round(avgPredatorAvoidanceRadius / totalBoids,4);
+  
+  
+    avgAlignmentFactor = round(avgAlignmentFactor / totalBoids,4);
+    avgCohesionFactor = round(avgCohesionFactor / totalBoids,4);
+    avgCenterAttraction = round(avgCenterAttraction / totalBoids,4);
+    avgSeparationFactor = round(avgSeparationFactor / totalBoids,4);
+    avgPredatorAvoidanceFactor = round(avgPredatorAvoidanceFactor / totalBoids,4);
+  
+    // Draw text on canvas
+    if(showStats==1){
+    ctx.font = '16px Arial';
+    ctx.fillStyle = 'black';
+    ctx.fillText(`Avg alignmentFactor: (${avgAlignmentFactor})`, 10, 20); // Top-left corner
+    ctx.fillText(`Avg cohesionFactor: (${avgCohesionFactor})`, 10, 40);
+    ctx.fillText(`Avg centerAttraction: (${avgCenterAttraction})`, 10, 60);
+    ctx.fillText(`Avg separationFactor: (${avgSeparationFactor})`, 10, 80);
+    ctx.fillText(`Avg predatorAvoidanceFactor: (${avgPredatorAvoidanceFactor})`, 10, 100);
+    ctx.fillText(`Avg alignmentRadius: (${avgAlignmentRadius})`, 10, 120); // Top-left corner
+    ctx.fillText(`Avg centerRadius: (${avgCenterRadius})`, 10, 140);
+    ctx.fillText(`Avg separationRadius: (${avgSeparationRadius})`, 10, 160);
+    ctx.fillText(`Avg predatorAvoidanceRadius: (${avgPredatorAvoidanceRadius})`, 10, 180);
+    ctx.fillText(`Total Kill Counter: (${killCounter})`, 10, 200);
+    ctx.fillText(`Predator Kill Counter: (${killCounterPred})`, 10, 220);
+    ctx.fillText(`Collision Kill Counter: (${killCounterCollision})`, 10, 240);
+    ctx.fillText(`Distance Kill Counter: (${killCounterDistance})`, 10, 260);
+    ctx.fillText(`Total boids: (${boids.length})`, 10, 280);
+  }
+  }
+  
+  let killCounter = 0;
+  let killCounterPred = 0;
+  let killCounterCollision = 0;
+  let killCounterDistance = 0;
+  
+        let step = 0;
+        function animate() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          for (let boid of boids) {
+            boid.update(boids,preds);
+            kill_pred(boids,preds,predKillRadius);
+            kill_sep(boids,sepKillRadius);
+            kill_center(boids,centerKillRadius);
             boid.draw();
+          }
+          for (let pred of preds) {
+          pred.update(pred,boids);
+          pred.draw();
+          }
+  
+          for (let i = boids.length - 1; i >= 0; i--) {
+            if (isNaN(boids[i].position.x)){
+              boids.splice(i, 1);}
+            }
+            for (let i = preds.length - 1; i >= 0; i--) {
+            if (isNaN(preds[i].position.x)){
+              preds.splice(i, 1);}
+            }
+          if(boids.length < boidCount){
+            create_new_boid(boids);
+          }
+          if(preds.length < 4){
+            create_new_pred(preds);
+          }
+          drawBoidStatistics(ctx, boids);
+          if(showStats==1){
+          if(step % 200 === 0){
+            recordSummaryStatistics(boids, step);
+          }
+      }
+          step++;
+          animationFrame = requestAnimationFrame(animate);
         }
-
-        requestAnimationFrame(animate2);
+  
+        //function startSimulation() {
+        //setInterval(animate, 16); // Approx. 60 FPS (1000ms / 60)
+        //}
+        // startSimulation();
+  
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+              if (entry.isIntersecting && !isAnimating) {
+                isAnimating = true;
+                animate();
+              } else if (!entry.isIntersecting && isAnimating) {
+                isAnimating = false;
+                cancelAnimationFrame(animationFrame);
+              }
+            },
+            { threshold: 0.1 }
+          );
+    
+          observer.observe(canvas);
+    
+          window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+          });
     }
-
-    animate2();
-
-    window.addEventListener('resize', () => {
-        canvas2.width = window.innerWidth;
-        canvas2.height = window.innerHeight;
-    });
-</script>
--->
-
-
   
-
-<script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>  <script src="assets/smoothscroll/smooth-scroll.js"></script>  <script src="assets/ytplayer/index.js"></script>  <script src="assets/dropdown/js/navbar-dropdown.js"></script>  <script src="assets/theme/js/script.js"></script>  
+        //observer.observe(canvas);
+        //animate();
+        //window.addEventListener('resize', () => {
+          //canvas.width = window.innerWidth;
+          //canvas.height = window.innerHeight;
+        //});
+      //}
   
   
+      const predEvolConfig1 = {
+        boidCount: 80,
+        boidSize: 3,
+        maxSpeed: 5,
+        minSpeed: 3,
+        maxAcceleration: 0.5,
+        separationRadius_in: 10,
+        alignmentRadius_in: 189,
+        centerAttraction_in: 0.06,
+        centerRadius_in: 210,
+        predatorAvoidanceRadius_in: 100,
+        separationFactor_in: 10,
+        alignmentFactor_in: -0.048,
+        cohesionFactor_in: 0.13,
+        predatorAvoidanceFactor_in: 0.92,
+          predMaxSpeed: 6,
+          predMinSpeed: 0,
+          predMaxAccel: 6.5,
+          predSize: 5,
+          sepKillRadius: 1.,
+          centerKillRadius: 1000,
+          predKillRadius: 5,
+          sdAlignmentFactor: 0.0,
+          sdCohesionFactor: 0.0,
+          sdCenterAttraction: 0.0,
+          sdSeparationFactor: 0.,
+          sdPredatorAvoidanceFactor: .0,
+          sdAlignmentRadius: 0,
+          sdSeparationRadius: 0.,
+          sdCenterRadius: 0,
+          sdPredatorAvoidanceRadius:0.,
+          showStats: 0,
+          collision_factor: 1.5,
+          init_x: 300,
+          init_y: 200,
+          init_vx:-2,
+          init_vy:2,
+      };
+
+
+      const predEvolConfig2 = {
+        boidCount: 80,
+        boidSize: 3,
+        maxSpeed: 5,
+        minSpeed: 3,
+        maxAcceleration: 0.5,
+        separationRadius_in: 10,
+        alignmentRadius_in: 232,
+        centerAttraction_in: 0.32,
+        centerRadius_in: 231,
+        predatorAvoidanceRadius_in: 272,
+        separationFactor_in: 20,
+        alignmentFactor_in: 0.08,
+        cohesionFactor_in: 0.4,
+        predatorAvoidanceFactor_in: 10.4,
+          predMaxSpeed: 6,
+          predMinSpeed: 0,
+          predMaxAccel: 6.5,
+          predSize: 5,
+          sepKillRadius: 1.,
+          centerKillRadius: 1000,
+          predKillRadius: 5,
+          sdAlignmentFactor: 0.0,
+          sdCohesionFactor: 0.0,
+          sdCenterAttraction: 0.0,
+          sdSeparationFactor: 0.,
+          sdPredatorAvoidanceFactor: .0,
+          sdAlignmentRadius: 0,
+          sdSeparationRadius: 0.,
+          sdCenterRadius: 0,
+          sdPredatorAvoidanceRadius:0.,
+          showStats: 0,
+          collision_factor: 10,
+          init_x: 300,
+          init_y: 300,
+          init_vx:0,
+          init_vy:5,
+      };
+
+
+      const predEvolConfig3 = {
+        boidCount: 80,
+        boidSize: 3,
+        maxSpeed: 5,
+        minSpeed: 3,
+        maxAcceleration: 0.5,
+        separationRadius_in: 13,
+        alignmentRadius_in: 64,
+        centerAttraction_in: 0.07,
+        centerRadius_in: 213,
+        predatorAvoidanceRadius_in: 150,
+        separationFactor_in: 1.8,
+        alignmentFactor_in: 0.21,
+        cohesionFactor_in: -0.0039,
+        predatorAvoidanceFactor_in: 4.24,
+          predMaxSpeed: 6,
+          predMinSpeed: 0,
+          predMaxAccel: 6.5,
+          predSize: 5,
+          sepKillRadius: .5,
+          centerKillRadius: 1000,
+          predKillRadius: 5,
+          sdAlignmentFactor: 0.0,
+          sdCohesionFactor: 0.0,
+          sdCenterAttraction: 0.0,
+          sdSeparationFactor: 0.,
+          sdPredatorAvoidanceFactor: .0,
+          sdAlignmentRadius: 0,
+          sdSeparationRadius: 0.,
+          sdCenterRadius: 0,
+          sdPredatorAvoidanceRadius:0.,
+          showStats: 0,
+          collision_factor: 0.2,
+          init_x: 300,
+          init_y: 300,
+          init_vx:0,
+          init_vy:5,
+      };
+
+
+      const predEvolConfig4 = {
+        boidCount: 80,
+        boidSize: 3,
+        maxSpeed: 5,
+        minSpeed: 0,
+        maxAcceleration: 5.,
+        separationRadius_in: 9,
+        alignmentRadius_in: 31,
+        centerAttraction_in: 0.14,
+        centerRadius_in: 268,
+        predatorAvoidanceRadius_in: 150,
+        separationFactor_in: 6.9,
+        alignmentFactor_in: 0.058,
+        cohesionFactor_in: 0.048,
+        predatorAvoidanceFactor_in: 6.79,
+          predMaxSpeed: 6,
+          predMinSpeed: 0,
+          predMaxAccel: 6.5,
+          predSize: 5,
+          sepKillRadius: 0.5,
+          centerKillRadius: 1000,
+          predKillRadius: 5,
+          sdAlignmentFactor: 0.0,
+          sdCohesionFactor: 0.0,
+          sdCenterAttraction: 0.0,
+          sdSeparationFactor: 0.,
+          sdPredatorAvoidanceFactor: .0,
+          sdAlignmentRadius: 0,
+          sdSeparationRadius: 0.,
+          sdCenterRadius: 0,
+          sdPredatorAvoidanceRadius:0.,
+          showStats: 0,
+          collision_factor: 0.2,
+          init_x: 300,
+          init_y: 300,
+          init_vx:0,
+          init_vy:5,
+      };
+  
+  
+      initializeFlockingSimulationPredatorEvolve('predEvolSimulation1', predEvolConfig1);
+      initializeFlockingSimulationPredatorEvolve('predEvolSimulation2', predEvolConfig2);
+      initializeFlockingSimulationPredatorEvolve('predEvolSimulation3', predEvolConfig3);
+      initializeFlockingSimulationPredatorEvolve('predEvolSimulation4', predEvolConfig4);
+
+  </script>  
+
+
+
 </body>
 </html>
