@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html  >
+<head>
+        	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G8YXQGXPX5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-G8YXQGXPX5');
+</script>
+  <!-- Site made with Mobirise Website Builder v5.9.18, https://mobirise.com -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Mobirise v5.9.18, mobirise.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <link rel="shortcut icon" href="assets/images/cwg-icon.png" type="image/x-icon">
+  <meta name="description" content="Simulations of River Evolution">
+  
+  
+  <title>RiverSim</title>
+  <link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
+  <link rel="stylesheet" href="assets/dropdown/css/style.css">
+  <link rel="stylesheet" href="assets/theme/css/style.css">
+  <link rel="stylesheet" href="assets/gallery/style.css">
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Inter+Tight:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter+Tight:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap"></noscript>
+  <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css?v=c2Vm4W"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css?v=c2Vm4W" type="text/css">
+
+  
+  
+  
+</head>
+<body>
+  
+  <section data-bs-version="5.1" class="menu menu1 cid-uxIo30R6fm" once="menu" id="menu01-40">
+	
+
+	<nav class="navbar navbar-dropdown navbar-expand-lg">
+		<div class="container">
+			<div class="navbar-brand">
+				
+				<span class="navbar-caption-wrap"><a class="navbar-caption text-black text-primary display-4" href="index.html">Cameron Witton-Grove</a></span>
+			</div>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbarSupportedContent" data-bs-target="#navbarSupportedContent" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+				<div class="hamburger">
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true"><li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="index.html">Home</a></li><li class="nav-item">
+						<a class="nav-link link text-black text-primary display-4" href="about.html">About Me</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link link text-black text-primary display-4" href="https://baseballaheadinthecount.blogspot.com/" aria-expanded="false" target="_blank">Blog</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link link text-black text-primary display-4" href="contact.html">Contact</a>
+					</li><li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="projects.html">Hobby Projects</a></li></ul>
+				
+				
+			</div>
+		</div>
+	</nav>
+</section>
+
+<section data-bs-version="5.1" class="header1 cid-uYbBS0GYvm" id="header01-41">
+	
+
+	
+	
+
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-12 col-md-12 col-lg-5 image-wrapper">
+				<img class="w-100" src="assets/images/fisk-fig-test-big-run-126-1.png" alt="River History Graphic">
+			</div>
+			<div class="col-12 col-lg col-md-12">
+				<div class="text-wrapper align-left">
+					<h1 class="mbr-section-title mbr-fonts-style mb-4 display-2"><strong>Simulating Rivers</strong></h1>
+					
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section data-bs-version="5.1" class="content4 cid-uYbBSVEmEv" id="list02-42">
+    
+
+    
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="title col-md-12 mb-5">
+                    
+                    
+                </div>
+                <div class="item features-without-image col-12">
+                    <div class="item-wrapper">
+                        <div class="card-box align-left">
+                            
+                            <p class="card-text mbr-fonts-style mb-5 display-7">In this post I'll go through my process for creating a program to simulate the evolution of river systems, including the impact of gravity, meanders and confluences, along with how I visualized them. This was more of an artistic simulation instead of a simulation of the underlying physics that leads to such emergent patterns.<br><br>I was inspired to undertake this project after seeing <u><strong><a href="https://publicdomainreview.org/collection/maps-of-the-lower-mississippi-harold-fisk/" class="text-primary" target="_blank">Harold Fisk's 1944 meander maps of the Mississippi river</a></strong></u> and <u><a href="https://roberthodgin.com/project/meander" class="text-primary" target="_blank">Robert Hodgin's 'Meander' generative art project</a></u> .&nbsp;<br></p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<section data-bs-version="5.1" class="content4 cid-v0ddbn2ZKT" id="list02-47">
+    
+
+    
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="title col-md-12 mb-5">
+                    
+                    
+                </div>
+                <div class="item features-without-image col-12">
+                    <div class="item-wrapper">
+                        <div class="card-box align-left">
+                            <h5 class="card-title mbr-fonts-style mb-3 display-5">
+                                <strong>Approach</strong></h5>
+                            <p class="card-text mbr-fonts-style mb-5 display-7">There were four main features of rivers that I wanted to include in my simulation:<br>
+<br>1. Response to elevation changes<br>
+<br>2. Meandering
+<br>
+<br>3. Confluences at intersections
+<br>
+<br>4. Branching &amp; deltas
+<br>
+<br>In all, I was able to achieve the first three of these criteria without needing to make a complex hydrodynamic simulation. Let's go through them in more detail.<br></p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<section data-bs-version="5.1" class="content4 cid-v0bEtOL3UE" id="list02-46">
+    
+
+    
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="title col-md-12 mb-5">
+                    
+                    
+                </div>
+                <div class="item features-without-image col-12">
+                    <div class="item-wrapper">
+                        <div class="card-box align-left">
+                            <h5 class="card-title mbr-fonts-style mb-3 display-5">
+                                <strong>Gravity</strong></h5>
+                            <p class="card-text mbr-fonts-style mb-5 display-7">To define my rivers I used a series of sampled points with x/y coordinates, rendered as a continuous line. Each line had a fixed "source" and "sink" which acted as tethers, fixing each end of the line, but allowing the centre to move freely.<br><br>I also defined a matrix containing elevation values at coordinates in the area I wanted to use. This matrix was fixed as I didn't simulate the impact of erosion on the terrain in the map. Natural shaping of the ground around the rivers could perhaps be a future extension to the project.<br><br>The gradients of the elevation matrix in the x- and y-directions were saved and used to apply forces to the sampled river channel points. At each timestep, a point would be moved by a force proportional to the local elevation gradient. The line would then be resampled to ensure even spacing between the points. This keeps a manageable curvature in the line by regularly sampling and is especially useful when we move on to meanders and confluences.<br><br>This method of moving the river under gravity is simple and easy to implement, but it isn't necessarily the best for a realistic simulation. Rather than gravity causing a river to straighten out down a steep slope, it would instead cause the existing river channel shape to be translated downhill over time. In the future, I might change the gravity scheme to one that aligns the river channel with the local gradient, rather than on that simply moves the channel in the direction of the gradient.<br><br>Also, this setup means that each river must be created with an extant channel between the source and sink. If the initial river channel crosses a saddle-point in the elevation map, then the river cannot escape to find the true lowest-energy path between source and sink and will inevitably travel uphill for a portion of its journey.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<section data-bs-version="5.1" class="content4 cid-v0deui6esU" id="list02-48">
+    
+
+    
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="title col-md-12 mb-5">
+                    
+                    
+                </div>
+                <div class="item features-without-image col-12">
+                    <div class="item-wrapper">
+                        <div class="card-box align-left">
+                            <h5 class="card-title mbr-fonts-style mb-3 display-5">
+                                <strong>Meanders</strong></h5>
+                            <p class="card-text mbr-fonts-style mb-5 display-7">
+                                Gravity is by far the simplest feature to implement, after this it gets a little more tricky. Meandering was the next task on my list.<br><br>The physics behind the formation of meanders is complex, involving <em>helicoidal&nbsp;</em>secondary flow patterns that increase erosion on the outside of bends and deposition on the inside. I did not want to simulate this full process (my river channels are one-dimensional!) and so I limited myself to explaining this phenomenon by simply using the local curvature of the river channel with no underlying physics.<br><br>The meander force was created with a combination of the tangent to the river channel plus the outer bitangent, proportional to the local curvature of the channel at that point. This is essentially the same method as <u><a href="https://roberthodgin.com/project/meander" class="text-primary" target="_blank">Hodgin's Meander project</a></u>. I scaled the relative strengths of the forces until the result looked reasonable.<br><br>The image below shows a river channel after including meanders but no collision detection. The underlying colour shows the elevation map that I used. The river initially flows in a straight line steeply downhill then meanders form in the flat valley bottom as the river winds around itself.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<section data-bs-version="5.1" class="image01 cid-v0ExhG5vqT" id="image01-49">
+  
+
+  
+  
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-6">
+        <div class="image-wrapper mb-4">
+          <img class="w-100" src="assets/images/river-no-cuts.png" alt="Meanders without collisions">
+        </div>
+        
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-bs-version="5.1" class="content4 cid-v0EyKb40jE" id="list02-4c">
+    
+
+    
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="title col-md-12 mb-5">
+                    
+                    
+                </div>
+                <div class="item features-without-image col-12">
+                    <div class="item-wrapper">
+                        <div class="card-box align-left">
+                            
+                            <p class="card-text mbr-fonts-style mb-5 display-7">Next, self-collisions of the river channel could be added, upon a collision, the interstitial segment is removed. This is the characteristic cutting that leaves ox-bow lakes behind in meander belts. The gif below shows the evolution of river channels with self-collisions and each channel leaving a shadow of its past evolution. Note that there are currently no collisions <em>between</em>&nbsp;channels, which causes them to overlap.<br></p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<section data-bs-version="5.1" class="image01 cid-v0EymVnwbD" id="image01-4b">
+  
+
+  
+  
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-6">
+        <div class="image-wrapper mb-4">
+          <img class="w-100" src="assets/images/meander-history-4.gif" alt="Meanders with self collisions">
+        </div>
+        
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-bs-version="5.1" class="content4 cid-v0Fr5Wcn5b" id="list02-4f">
+    
+
+    
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="title col-md-12 mb-5">
+                    
+                    
+                </div>
+                <div class="item features-without-image col-12">
+                    <div class="item-wrapper">
+                        <div class="card-box align-left">
+                            
+                            <p class="card-text mbr-fonts-style mb-5 display-7">Meanders only form when the gravity gradient is sufficiently low, otherwise the river channel is moved downhill faster than meanders can form. We can see in the graph below that the flow aligns with gravity unless the gravity gradient falls below a threshold at which point meanders can cause large differences between the elevation slope and the river channel.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<section data-bs-version="5.1" class="image01 cid-v0F6lhkLyv" id="image01-4d">
+  
+
+  
+  
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-6">
+        <div class="image-wrapper mb-4">
+          <img class="w-100" src="assets/images/river-angles.png" alt="River Channel Direction vs Local Gravity">
+        </div>
+        
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-bs-version="5.1" class="content4 cid-v0F6MDZApj" id="list02-4e">
+    
+
+    
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="title col-md-12 mb-5">
+                    
+                    
+                </div>
+                <div class="item features-without-image col-12">
+                    <div class="item-wrapper">
+                        <div class="card-box align-left">
+                            <h5 class="card-title mbr-fonts-style mb-3 display-5">
+                                <strong>Collisions</strong></h5>
+                            <p class="card-text mbr-fonts-style mb-5 display-7">The addition of mergers between river channels was a big step up in the complexity of the code. It meant that I couldn't just use independently defined river channels and naively update them one after another. I needed to build a larger structure to handle the river network that could be manipulated when mergers occurred.<br><br>I represented my river network as a graph, specifically a directed acyclic graph (DAG). The graph is directed because the rivers flow from source to sink, and the graph is acyclic because rivers do not have loops in them where the downstream flow rejoins itself upstream. This is because if such a cycle existed, the river would quickly realign to skip the cycled portion and simply flow directly downstream instead. This acyclic nature is why meander cutting results in a detached oxbow lake, rather than continuing the river through the old meander channel when a better option is now available to the flow within.<br><br>Each portion of the river channel is represented as an edge of the graph. Nodes of the graph can be sources, sinks, or junctions between channels. The volume of water flowing through a particular river channel can be represented as a property of the edge. The graph can automatically calculate the volume through each channel based on the upstream volume from each source. The physical location of the river channel in space is also attached as a property of each edge of the graph.<br><br>The graph below is a schematic of how such a river network looks at this higher level. The edges do not conform to how the channels are exactly located in space, but they are representative of the general relative positions of the channels, similar to how the London Underground map contains information on the routes and intersections of all the lines, without mapping each contour &amp; curve of the rails themselves.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<section data-bs-version="5.1" class="image01 cid-v0FryaYjfB" id="image01-4g">
+  
+
+  
+  
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-6">
+        <div class="image-wrapper mb-4">
+          <img class="w-100" src="assets/images/example-graph-init.png" alt="River Graph Structure">
+        </div>
+        
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-bs-version="5.1" class="content4 cid-v0FOhvIJPo" id="list02-4j">
+    
+
+    
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="title col-md-12 mb-5">
+                    
+                    
+                </div>
+                <div class="item features-without-image col-12">
+                    <div class="item-wrapper">
+                        <div class="card-box align-left">
+                            
+                            <p class="card-text mbr-fonts-style mb-5 display-7">
+                                Branching of channels is simple to represent in this network view. We can simply take an edge, insert two nodes in series in the middle of it, and create two distinct edges that travel between those new nodes. Each of these new edges holds half the volume of the initial edge, thus conserving volume through the network.<br><br>The image below shows the effect of many random branchings on the original network from above. We can even get nested branching within branches as seen on the far-left of the image. Branching the abstract network is simple, applying it to the river channels in space is harder to achieve realistically, as I'll get to later.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<section data-bs-version="5.1" class="image01 cid-v0Frz3Gcxe" id="image01-4h">
+  
+
+  
+  
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-6">
+        <div class="image-wrapper mb-4">
+          <img class="w-100" src="assets/images/example-branched.png" alt="River Graph Branched">
+        </div>
+        
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-bs-version="5.1" class="content4 cid-v0FOiCb6xW" id="list02-4k">
+    
+
+    
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="title col-md-12 mb-5">
+                    
+                    
+                </div>
+                <div class="item features-without-image col-12">
+                    <div class="item-wrapper">
+                        <div class="card-box align-left">
+                            
+                            <p class="card-text mbr-fonts-style mb-5 display-7">Finally <em>merging</em>&nbsp;can also be represented in this abstract representation. Merging is harder to simulate at the network level as we must handle the removal of cycles and the pruning of vestigial edges and nodes in the tree.<br><br>When two edges are merged, a new node is inserted with both the original edges as incoming nodes. I decided to only include one outgoing node from the original two on a merge, to simulate the fact that rivers eventually choose only one downstream channel which captures the entire flow at the confluence. The chosen remaining outgoing edge is the one that had the higher initial flow volume.<br><br>If, after a merger, there is a cycle in the graph, then the offending edge that joins to its own upstream channel is removed.<br><br>After these operations, it is possible for there to be edges &amp; nodes with zero volume flowing through them because they have become detached from the sources of flow. These edges and nodes are removed until the entire graph contains non-zero flow again.<br><br>Applying random mergers to the branched graph above gives us the graph below. Note that there are no cycles and the volume is conserved at each junction but we can still get complex interactions between the different channels.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<section data-bs-version="5.1" class="image01 cid-v0Fs7NcQvQ" id="image01-4i">
+  
+
+  
+  
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-6">
+        <div class="image-wrapper mb-4">
+          <img class="w-100" src="assets/images/example-branched-merged.png" alt="River Graph after merging">
+        </div>
+        
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-bs-version="5.1" class="content4 cid-v0FOjlOV3h" id="list02-4l">
+    
+
+    
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="title col-md-12 mb-5">
+                    
+                    
+                </div>
+                <div class="item features-without-image col-12">
+                    <div class="item-wrapper">
+                        <div class="card-box align-left">
+                            
+                            <p class="card-text mbr-fonts-style mb-5 display-7">The exact shape of the channels represented by each edge are derived from relevant portions of the parent edges that produced a merger.<br><br>The characteristic length-scale of meanders should be proportional to channel width. In order to incorporate this I calculated the local curvature over a spanning window proportional to the flow volume in the chosen edge. This had the effect of making meanders larger &amp; slower to evolve.<br><br>Combining all of this, we get the river evolution in the gif below:<br></p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<section data-bs-version="5.1" class="image01 cid-v0ExCrHuNi" id="image01-4a">
+  
+
+  
+  
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-6">
+        <div class="image-wrapper mb-4">
+          <img class="w-100" src="assets/images/new-method-more-meanders.gif" alt="Meanders With Collisions">
+        </div>
+        
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-bs-version="5.1" class="content4 cid-v0KBEpnbYo" id="list02-4m">
+    
+
+    
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="title col-md-12 mb-5">
+                    
+                    
+                </div>
+                <div class="item features-without-image col-12">
+                    <div class="item-wrapper">
+                        <div class="card-box align-left">
+                            <h5 class="card-title mbr-fonts-style mb-3 display-5"><strong>Unsuccessful efforts at branching</strong><strong><br></strong></h5>
+                            <p class="card-text mbr-fonts-style mb-5 display-7">Mergers between channels are easy enough to simulate in space because you can just take the incoming channel shapes and cut them at the right points to create new channels that evolve nicely with no further input needed. Unfortunately, making new branched channels was not so easy.<br><br>The problem was that branched channels would inevitably want to re-merge very quickly through a collision, at which point one channel would survive and one of the branched portions would disappear. I did not want to be giving branched channels all sorts of bespoke rules to govern their behaviour and so I gave up on implementing them in this simulation.<br><br>One separate effort that I made, was to generate branching by representing a river channel as many parallel sub-channels that repelled one another by different amounts. When the distance between two of these sub-channels was large enough then a gap would form between them which could be interpreted as a branching in the main channel.<br><br>This could produce a reasonable approximation of braided channels, but was sufficiently difficult to work into my original simulation that I left it for now. If I were to revisit this, then extending the simulation to accurately include the generation and evolution of branches in an emergent and physically motivated way would be the next step I would take.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<section data-bs-version="5.1" class="image01 cid-v0KBFfdnjo" id="image01-4n">
+  
+
+  
+  
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-6">
+        <div class="image-wrapper mb-4">
+          <img class="w-100" src="assets/images/example-river-bars2.gif" alt="Branching through sub-channels">
+        </div>
+        
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-bs-version="5.1" class="content4 cid-v0KBJXM5MU" id="list02-4o">
+    
+
+    
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="title col-md-12 mb-5">
+                    
+                    
+                </div>
+                <div class="item features-without-image col-12">
+                    <div class="item-wrapper">
+                        <div class="card-box align-left">
+                            <h5 class="card-title mbr-fonts-style mb-3 display-5">
+                                <strong>A selection of simulations</strong></h5>
+                            <p class="card-text mbr-fonts-style mb-5 display-7">
+                                I wanted to produce a gallery of images of my simulated rivers, like Fisk's Mississippi maps. I generated a series of elevation maps that had mountains at the bottom and a flat plain at the top. Rivers were generated on the upper slopes of the mountains and left to evolve, meander, and merge following the rules that I defined above. This created a diverse set of river histories.<br><br>I then plotted these rivers in layers. The first layer of the image was the elevation map, with contours and colouring showing the mountain heights. Next the oldest river snapshot was added. Each subsequent set of river locations was plotted over the top, creating a colourful narrative of how meanders formed and were abandoned, and formed again, and how tributaries merged over time to occasionally form a vast channel which drained every source on the entire map.<br><br>A few examples are included below, but the full set can be found at the link below</p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<section data-bs-version="5.1" class="gallery1 mbr-gallery cid-v0KPVTuNdn" id="gallery02-4x">   
+    
+    
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 content-head">
+                
+            </div>
+        </div>
+        <div class="row mbr-gallery mbr-masonry" data-masonry="{&quot;percentPosition&quot;: true }">
+            <div class="col-12 col-md-6 col-lg-6 item gallery-image">
+                <div class="item-wrapper" data-toggle="modal" data-bs-toggle="modal" data-target="#v0Lnw0Ak8j-modal" data-bs-target="#v0Lnw0Ak8j-modal">
+                    <img class="w-100" src="assets/images/fisk-fig-test-big-run-101-.png" alt="Plate 1" data-slide-to="0" data-bs-slide-to="0" data-target="#lb-v0Lnw0Ak8j" data-bs-target="#lb-v0Lnw0Ak8j">
+                    <div class="icon-wrapper">
+                        <span class="mobi-mbri mobi-mbri-search mbr-iconfont mbr-iconfont-btn"></span>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="col-12 col-md-6 col-lg-6 item gallery-image">
+                <div class="item-wrapper" data-toggle="modal" data-bs-toggle="modal" data-target="#v0Lnw0Ak8j-modal" data-bs-target="#v0Lnw0Ak8j-modal">
+                    <img class="w-100" src="assets/images/fisk-fig-test-big-run-107-.png" alt="Plate VII" data-slide-to="1" data-bs-slide-to="1" data-target="#lb-v0Lnw0Ak8j" data-bs-target="#lb-v0Lnw0Ak8j">
+                    <div class="icon-wrapper">
+                        <span class="mobi-mbri mobi-mbri-search mbr-iconfont mbr-iconfont-btn"></span>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="col-12 col-md-6 col-lg-6 item gallery-image">
+                <div class="item-wrapper" data-toggle="modal" data-bs-toggle="modal" data-target="#v0Lnw0Ak8j-modal" data-bs-target="#v0Lnw0Ak8j-modal">
+                    <img class="w-100" src="assets/images/fisk-fig-test-big-run-109-.png" alt="Plate IX" data-slide-to="2" data-bs-slide-to="2" data-target="#lb-v0Lnw0Ak8j" data-bs-target="#lb-v0Lnw0Ak8j">
+                    <div class="icon-wrapper">
+                        <span class="mobi-mbri mobi-mbri-search mbr-iconfont mbr-iconfont-btn"></span>
+                    </div>
+                </div>
+                
+            </div><div class="col-12 col-md-6 col-lg-6 item gallery-image">
+                <div class="item-wrapper" data-toggle="modal" data-bs-toggle="modal" data-target="#v0Lnw0Ak8j-modal" data-bs-target="#v0Lnw0Ak8j-modal">
+                    <img class="w-100" src="assets/images/fisk-fig-test-big-run-119-.png" alt="Plate XIX" data-slide-to="3" data-bs-slide-to="3" data-target="#lb-v0Lnw0Ak8j" data-bs-target="#lb-v0Lnw0Ak8j">
+                    <div class="icon-wrapper">
+                        <span class="mobi-mbri mobi-mbri-search mbr-iconfont mbr-iconfont-btn"></span>
+                    </div>
+                </div>
+                
+            </div>
+            
+            
+            
+            
+        </div>
+
+        <div class="modal mbr-slider" tabindex="-1" role="dialog" aria-hidden="true" id="v0Lnw0Ak8j-modal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="carousel slide" id="lb-v0Lnw0Ak8j" data-interval="5000" data-bs-interval="5000">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img class="d-block w-100" src="assets/images/fisk-fig-test-big-run-101-.png" alt="Mobirise Website Builder">
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" src="assets/images/fisk-fig-test-big-run-107-.png" alt="Mobirise Website Builder">
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" src="assets/images/fisk-fig-test-big-run-109-.png" alt="Mobirise Website Builder">
+                                </div><div class="carousel-item">
+                                    <img class="d-block w-100" src="assets/images/fisk-fig-test-big-run-119-.png" alt="Mobirise Website Builder">
+                                </div>
+                                
+                                
+                                
+                                
+                            </div>
+                            <ol class="carousel-indicators">
+                                <li data-slide-to="0" data-bs-slide-to="0" class="active" data-target="#lb-v0Lnw0Ak8j" data-bs-target="#lb-v0Lnw0Ak8j"></li>
+                                <li data-slide-to="1" data-bs-slide-to="1" data-target="#lb-v0Lnw0Ak8j" data-bs-target="#lb-v0Lnw0Ak8j"></li>
+                                <li data-slide-to="2" data-bs-slide-to="2" data-target="#lb-v0Lnw0Ak8j" data-bs-target="#lb-v0Lnw0Ak8j"></li><li data-slide-to="3" data-bs-slide-to="3" data-target="#lb-v0Lnw0Ak8j" data-bs-target="#lb-v0Lnw0Ak8j"></li>
+                                
+                                
+                                
+                                
+                            </ol>
+                            <a role="button" href="" class="close" data-dismiss="modal" data-bs-dismiss="modal" aria-label="Close">
+                            </a>
+                            <a class="carousel-control-prev carousel-control" role="button" data-slide="prev" data-bs-slide="prev" href="#lb-v0Lnw0Ak8j">
+                                <span class="mobi-mbri mobi-mbri-arrow-prev" aria-hidden="true"></span>
+                                <span class="sr-only visually-hidden">Previous</span>
+                            </a>
+                            <a class="carousel-control-next carousel-control" role="button" data-slide="next" data-bs-slide="next" href="#lb-v0Lnw0Ak8j">
+                                <span class="mobi-mbri mobi-mbri-arrow-next" aria-hidden="true"></span>
+                                <span class="sr-only visually-hidden">Next</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section data-bs-version="5.1" class="article16 cid-v0KNjCCBPn" id="article16-4u">
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 col-lg-8">
+                <div class="mbr-section-btn align-center"><a class="btn btn-success display-5" href="https://ibb.co/album/k5PXgZ?sort=name_asc" target="_blank">Find the full gallery here!</a></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section data-bs-version="5.1" class="content4 cid-v0KBLGcxAO" id="list02-4q">
+    
+
+    
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="title col-md-12 mb-5">
+                    
+                    
+                </div>
+                <div class="item features-without-image col-12">
+                    <div class="item-wrapper">
+                        <div class="card-box align-left">
+                            
+                            <p class="card-text mbr-fonts-style mb-5 display-7">This project was a little less <em>emergent</em>&nbsp;than I would normally want, I had to explicitly prescribe much of the simulation behaviour to achieve the results that I wanted. This saved lots of time and computational energy compared to a simulation of the underlying physics of rivers but allowed me to actually produce results, which is no guarantee with a tougher project. I (masochistically?) programmed this in R because it is the language that I am most familiar with and I have the most confidence in plotting. Perhaps on my next project I'll finally make the leap to C++&nbsp;<br><br>I hadn't previously had much experience with graph algorithms before, this was a nice sandbox to experiment with them. <br><br>I was able to both accelerate and decelerate my progress on this project by using LLMs. I found it most helpful to use them to craft short, specific functions where I would provide the input and output data formats and say exactly what I wanted it to do. It would go overboard handling numerous exceptions which would never occur in practice, but the code would work straight away a fair fraction of the time. They were least helpful for the grand-strategy of the project, leading me on wild goose chases regarding the data structures that I was to use, and when attempting to fit more than a couple of functions together, things would start to break down.<br><br>At the current moment, it seems most fruitful to keep the high-level details solely at the human level, with AI used to tinker with local parts of the code in a controlled manner.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<section data-bs-version="5.1" class="image01 cid-v0KBN1sJwp" id="image01-4r">
+  
+
+  
+  
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-6">
+        <div class="image-wrapper mb-4">
+          <img class="w-100" src="assets/images/sinusoidal-long.gif" alt="River Gif">
+        </div>
+        
+        
+      </div>
+    </div>
+  </div>
+  <script src="https://utteranc.es/client.js"
+        repo="cejgrove/cejgrove.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+</section><script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>  <script src="assets/smoothscroll/smooth-scroll.js"></script>  <script src="assets/ytplayer/index.js"></script>  <script src="assets/dropdown/js/navbar-dropdown.js"></script>  <script src="assets/masonry/masonry.pkgd.min.js"></script>  <script src="assets/imagesloaded/imagesloaded.pkgd.min.js"></script>  <script src="assets/theme/js/script.js"></script>  <script src="assets/gallery/player.min.js"></script>  <script src="assets/gallery/script.js"></script>  
+  
+  
+</body>
+</html>
